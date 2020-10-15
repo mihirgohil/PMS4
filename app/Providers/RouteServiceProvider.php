@@ -39,8 +39,46 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapWebRoutes();
 
+        $this->mapCompanyRoutes();
+
+        $this->mapStudentRoutes();
+
         //
+    }    
+    
+    /**
+     * Define the "student" routes for the application.
+     *
+     * These routes are typically stateless.
+     *
+     * @return void
+     */
+    protected function mapStudentRoutes()
+    {
+        Route::prefix('student')
+             ->middleware(['web'])
+             ->namespace($this->namespace)
+             ->group(base_path('routes/student.php'));
+    }    
+    
+    /**
+     * Define the "company" routes for the application.
+     *
+     * These routes are typically stateless.
+     *
+     * @return void
+     */
+    protected function mapCompanyRoutes()
+    {
+        Route::prefix('company')
+             ->middleware(['web'])
+             ->namespace($this->namespace)
+             ->group(base_path('routes/company.php'));
     }
+
+
+
+
 
     /**
      * Define the "web" routes for the application.
