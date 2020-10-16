@@ -36,6 +36,11 @@ return [
     */
 
     'guards' => [
+        'placement-coordinator' => [
+            'driver'   => 'session',
+            'provider' => 'placement-coordinators',
+        ],
+
         'company' => [
             'driver'   => 'session',
             'provider' => 'companies',
@@ -76,6 +81,11 @@ return [
     */
 
     'providers' => [
+        'placement-coordinators' => [
+            'driver' => 'eloquent',
+            'model'  => App\PlacementCoordinator::class,
+        ],
+
         'companies' => [
             'driver' => 'eloquent',
             'model'  => App\Company::class,
@@ -113,6 +123,12 @@ return [
     */
 
     'passwords' => [
+        'placement-coordinators' => [
+            'provider' => 'placement-coordinators',
+            'table'    => 'password_resets',
+            'expire'   => 60,
+        ],
+
         'companies' => [
             'provider' => 'companies',
             'table'    => 'password_resets',

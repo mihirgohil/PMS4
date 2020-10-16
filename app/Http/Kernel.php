@@ -51,6 +51,8 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
+        'placement-coordinator.auth' => \App\Http\Middleware\RedirectIfNotPlacementCoordinator::class,
+        'placement-coordinator.guest' => \App\Http\Middleware\RedirectIfPlacementCoordinator::class,
         'company.auth' => \App\Http\Middleware\RedirectIfNotCompany::class,
         'company.guest' => \App\Http\Middleware\RedirectIfCompany::class,
         'student.auth' => \App\Http\Middleware\RedirectIfNotStudent::class,

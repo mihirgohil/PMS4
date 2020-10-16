@@ -39,6 +39,8 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapWebRoutes();
 
+        $this->mapPlacementCoordinatorRoutes();
+
         $this->mapCompanyRoutes();
 
         $this->mapStudentRoutes();
@@ -74,7 +76,24 @@ class RouteServiceProvider extends ServiceProvider
              ->middleware(['web'])
              ->namespace($this->namespace)
              ->group(base_path('routes/company.php'));
+    }    
+    
+    /**
+     * Define the "placement-coordinator" routes for the application.
+     *
+     * These routes are typically stateless.
+     *
+     * @return void
+     */
+    protected function mapPlacementCoordinatorRoutes()
+    {
+        Route::prefix('placement-coordinator')
+             ->middleware(['web'])
+             ->namespace($this->namespace)
+             ->group(base_path('routes/placement-coordinator.php'));
     }
+
+
 
 
 
