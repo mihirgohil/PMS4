@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel chuski
+                    Laravel chuski ok
                 </div>
 
                 <div class="links">
