@@ -39,11 +39,11 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapWebRoutes();
 
+        $this->mapStudentRoutes();
+
         $this->mapPlacementCoordinatorRoutes();
 
         $this->mapCompanyRoutes();
-
-        $this->mapStudentRoutes();
 
         //
     }    
@@ -91,7 +91,18 @@ class RouteServiceProvider extends ServiceProvider
              ->middleware(['web'])
              ->namespace($this->namespace)
              ->group(base_path('routes/placement-coordinator.php'));
-    }
+    }    
+    
+    /**
+     * Define the "student" routes for the application.
+     *
+     * These routes are typically stateless.
+     *
+     * @return void
+     */
+    
+
+
 
 
 

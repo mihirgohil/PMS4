@@ -9,8 +9,8 @@ Route::group(['namespace' => 'PlacementCoordinator'], function() {
     Route::post('logout', 'Auth\LoginController@logout')->name('placement-coordinator.logout');
 
     // Register
-    Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('placement-coordinator.register');
-    Route::post('register', 'Auth\RegisterController@register');
+   // Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('placement-coordinator.register');
+   // Route::post('register', 'Auth\RegisterController@register');
 
     // Passwords
     Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('placement-coordinator.password.email');

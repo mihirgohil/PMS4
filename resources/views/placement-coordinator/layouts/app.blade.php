@@ -44,13 +44,13 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('placement-coordinator.login') }}">{{ __('Login') }}</a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link" href="{{ route('placement-coordinator.register') }}">{{ __('Register') }}</a>
-                        </li>
+                        </li> --}}
                     @else
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::guard('placement-coordinator')->user()->name }} <span class="caret"></span>
+                                {{ Auth::guard('placement-coordinator')->user()->studentname }} <span class="caret"></span>
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

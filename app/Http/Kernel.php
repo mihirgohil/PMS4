@@ -51,12 +51,12 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
+        'student.auth' => \App\Http\Middleware\RedirectIfNotStudent::class,
+        'student.guest' => \App\Http\Middleware\RedirectIfStudent::class,
         'placement-coordinator.auth' => \App\Http\Middleware\RedirectIfNotPlacementCoordinator::class,
         'placement-coordinator.guest' => \App\Http\Middleware\RedirectIfPlacementCoordinator::class,
         'company.auth' => \App\Http\Middleware\RedirectIfNotCompany::class,
         'company.guest' => \App\Http\Middleware\RedirectIfCompany::class,
-        'student.auth' => \App\Http\Middleware\RedirectIfNotStudent::class,
-        'student.guest' => \App\Http\Middleware\RedirectIfStudent::class,
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,

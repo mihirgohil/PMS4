@@ -36,6 +36,11 @@ return [
     */
 
     'guards' => [
+        'student' => [
+            'driver'   => 'session',
+            'provider' => 'students',
+        ],
+
         'placement-coordinator' => [
             'driver'   => 'session',
             'provider' => 'placement-coordinators',
@@ -46,10 +51,7 @@ return [
             'provider' => 'companies',
         ],
 
-        'student' => [
-            'driver'   => 'session',
-            'provider' => 'students',
-        ],
+        
 
         'web' => [
             'driver' => 'session',
@@ -81,6 +83,11 @@ return [
     */
 
     'providers' => [
+        'students' => [
+            'driver' => 'eloquent',
+            'model'  => App\Student::class,
+        ],
+
         'placement-coordinators' => [
             'driver' => 'eloquent',
             'model'  => App\PlacementCoordinator::class,
@@ -91,10 +98,7 @@ return [
             'model'  => App\Company::class,
         ],
 
-        'students' => [
-            'driver' => 'eloquent',
-            'model'  => App\Student::class,
-        ],
+        
 
         'users' => [
             'driver' => 'eloquent',
@@ -123,6 +127,12 @@ return [
     */
 
     'passwords' => [
+        'students' => [
+            'provider' => 'students',
+            'table'    => 'password_resets',
+            'expire'   => 60,
+        ],
+
         'placement-coordinators' => [
             'provider' => 'placement-coordinators',
             'table'    => 'password_resets',
@@ -135,11 +145,7 @@ return [
             'expire'   => 60,
         ],
 
-        'students' => [
-            'provider' => 'students',
-            'table'    => 'password_resets',
-            'expire'   => 60,
-        ],
+        
 
         'users' => [
             'provider' => 'users',

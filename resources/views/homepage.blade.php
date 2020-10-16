@@ -30,9 +30,7 @@
 				<ul>
 					<li><a href="{{ route('company.dashboard') }}">Company</a></li>
 					<li><a href="{{ route('student.dashboard') }}">Student</a></li>
-					<li><a href="#">College</a></li>
-
-                    
+                    <li><a href="{{ route('placement-coordinator.dashboard') }}">College</a></li>
 				</ul>
 			</nav>
 			<div class="center">
