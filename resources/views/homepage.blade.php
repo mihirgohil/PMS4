@@ -28,9 +28,11 @@
                      <img class="logo" src="images/college_logo.png">
                     </a>
 				<ul>
-					<li><a href="#">Company</a></li>
-					<li><a href="#">Student</a></li>
+					<li><a href="{{ route('company.dashboard') }}">Company</a></li>
+					<li><a href="{{ route('student.dashboard') }}">Student</a></li>
 					<li><a href="#">College</a></li>
+
+                    
 				</ul>
 			</nav>
 			<div class="center">
