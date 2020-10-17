@@ -24,6 +24,7 @@ Route::group(['namespace' => 'PlacementCoordinator'], function() {
     Route::get('email/verify/{id}','Auth\VerificationController@verify')->name('placement-coordinator.verification.verify');
 
     //add new coordinator
-    Route::get('/add-new-coordinator', 'HomeController@addNewCoordinatorShow')->name('placement-coordinator.addNewCo');
+    Route::get('/addNewCoordinator', 'HomeController@addNewCoordinatorShow')->name('placement-coordinator.addNewCo');
+    Route::Post('/addNewCoordinator/store','HomeController@addNewCoordinatorStore')->name('placement-coordinator.addNewCo.store');
 
 });

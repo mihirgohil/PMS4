@@ -5,7 +5,8 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Add New Placement Coordinator</div>
+                
+                <div class="card-header" style="text-align:center">Add New Placement Coordinator</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -13,9 +14,15 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <form method="POST" action="{{ route('placement-coordinator.login') }}" aria-label="{{ __('Register') }}">
+                   
+                    <form method="POST" action="{{ route('placement-coordinator.addNewCo.store') }}" aria-label="{{ __('Register') }}">
                         @csrf
-
+                       
+                        @if(isset($status))
+                        <div class="alert alert-success" role="alert">
+                            {{ 'boom' }}
+                        </div>
+                        @endisset
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
