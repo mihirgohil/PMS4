@@ -49,9 +49,18 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
+            'enrollment_no' => 'required|min:12|numeric',
+            'rollno' => 'required|max:255|numeric',
+            'studentname' => 'required|max:255',
+            'dob' => 'required|date',
             'email' => 'required|email|max:255|unique:students',
             'password' => 'required|min:6|confirmed',
+            'phone' => 'required|min:10|numeric',
+            'ssc' => 'required|numeric',
+            'hsc' => 'required|numeric',
+            'ug' => 'required|numeric',
+            'stream' => 'required|max:255',
+            'cpi' => 'required|numeric',
         ]);
     }
 
@@ -64,9 +73,18 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return Student::create([
-            'name' => $data['name'],
+            'enrollment_no' => $data['enrollment_no'],
+            'rollno' => $data['rollno'],
+            'studentname' => $data['studentname'],
+            'dob' => $data['dob'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'phone' => $data['phone'],
+            'ssc' => $data['ssc'],
+            'hsc' => $data['hsc'],
+            'ug' => $data['ug'],
+            'stream' => $data['stream'],
+            'cpi' => $data['cpi'],
         ]);
     }
 
