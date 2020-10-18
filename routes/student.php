@@ -24,5 +24,5 @@ Route::group(['namespace' => 'Student'], function() {
     Route::get('email/verify/{id}','Auth\VerificationController@verify')->name('student.verification.verify');
 
     // Student Profile
-    Route::post('profile', 'Auth\ProfileController@profile')->name('student.profile'); 
+    Route::get('profile', 'ProfileController@index')->name('student.profile'); 
 });

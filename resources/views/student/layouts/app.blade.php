@@ -59,8 +59,9 @@
                                                      document.getElementById('profile-form').submit();">
                                     {{ __('Profile') }}
                                 </a>
-
-            
+                                <form id="profile-form" action="{{ route('student.profile') }}" method="GET" style="display: none;">
+                                @csrf
+                                </form>
                                 <a class="dropdown-item" href="{{ route('student.logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -68,6 +69,7 @@
                                 </a>
 
                                 <form id="logout-form" action="{{ route('student.logout') }}" method="POST" style="display: none;">
+                                
                                 @csrf
                                 </form>
                             </div>
