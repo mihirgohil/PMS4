@@ -29,4 +29,8 @@ Route::group(['namespace' => 'Student'], function() {
     Route::get('email/verify','Auth\VerificationController@show')->name('student.verification.notice');
     Route::get('email/verify/{id}','Auth\VerificationController@verify')->name('student.verification.verify');
 
+    // Student Profile (view,edit)
+    Route::get('profile', 'ProfileController@index')->name('student.profile'); 
+    Route::get('edit', 'EditprofileController@edit')->name('student.editprofile');
+    Route::post('update', 'EditprofileController@update')->name('student.updateprofile');
 });
