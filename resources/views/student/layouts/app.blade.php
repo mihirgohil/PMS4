@@ -57,11 +57,21 @@
                             <a class="dropdown-item" href="{{ route('student.profile') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('profile-form').submit();">
-                                    {{ __('Profile') }}
+                                    {{ __('View Profile') }}
                                 </a>
                                 <form id="profile-form" action="{{ route('student.profile') }}" method="GET" style="display: none;">
                                 @csrf
                                 </form>
+
+                                <a class="dropdown-item" href="{{ route('student.editprofile') }}"
+                                   onclick="event.preventDefault();
+                                                     document.getElementById('updateprofile-form').submit();">
+                                    {{ __('Edit Profile') }}
+                                </a>
+                                <form id="updateprofile-form" action="{{ route('student.editprofile') }}" method="GET" style="display: none;">
+                                @csrf
+                                </form>
+
                                 <a class="dropdown-item" href="{{ route('student.logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
