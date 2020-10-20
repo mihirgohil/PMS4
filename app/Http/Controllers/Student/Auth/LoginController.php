@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+// use Illuminate\Foundation\Auth\VerifiesEmails;
 
 class LoginController extends Controller
 {
@@ -37,6 +38,7 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('student.guest:student', ['except' => 'logout']);
+         
     }
 
     /**

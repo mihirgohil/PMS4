@@ -17,9 +17,9 @@ class RedirectIfStudent
      * @return mixed
      */
     public function handle($request, Closure $next, $guard = 'student')
-    {
+    {   
         if (Auth::guard($guard)->check()) {
-            return redirect()->route('student.dashboard');
+                return redirect()->route('student.dashboard');
         }
 
         return $next($request);

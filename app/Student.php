@@ -5,9 +5,10 @@ namespace App;
 use App\Notifications\Student\StudentResetPassword;
 use App\Notifications\Student\StudentVerifyEmail;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Student extends Authenticatable
+class Student extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
 

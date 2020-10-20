@@ -45,7 +45,7 @@ class Kernel extends HttpKernel
 
     /**
      * The application's route middleware.
-     *
+     * 
      * These middleware may be assigned to groups or used individually.
      *
      * @var array
@@ -53,6 +53,7 @@ class Kernel extends HttpKernel
     protected $routeMiddleware = [
         'student.auth' => \App\Http\Middleware\RedirectIfNotStudent::class,
         'student.guest' => \App\Http\Middleware\RedirectIfStudent::class,
+        'student.verified' => \App\Http\Middleware\StudentMailVerified::class,
         'placement-coordinator.auth' => \App\Http\Middleware\RedirectIfNotPlacementCoordinator::class,
         'placement-coordinator.guest' => \App\Http\Middleware\RedirectIfPlacementCoordinator::class,
         'company.auth' => \App\Http\Middleware\RedirectIfNotCompany::class,

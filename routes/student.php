@@ -1,7 +1,13 @@
 <?php
 
 Route::group(['namespace' => 'Student'], function() {
+    
+    //studnet dashboard
     Route::get('/', 'HomeController@index')->name('student.dashboard');
+
+    //student mail verification page
+    Route::get('mail-verify', 'MailVerificationController@mailverify')->name('student.mailverify');
+
 
     // Login
     Route::get('login', 'Auth\LoginController@showLoginForm')->name('student.login');

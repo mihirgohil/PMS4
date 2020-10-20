@@ -195,9 +195,7 @@
                                     {{ __('Register') }}
                                 </button>
                             
-                                <button type="cancel" class="btn btn-danger">
-                                    {{ __('Cancel') }}
-                                </button>
+                                <a href="{{ route('home') }}" class="btn btn btn-danger float-right">Back</a>
                             </div>
                         </div>
 

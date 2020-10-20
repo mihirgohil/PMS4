@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Student\Auth\VerificationController;
 
 class HomeController extends Controller
 {
@@ -14,9 +15,11 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('student.auth:student');
+    public function __construct() 
+    {   
+        $this->middleware('student.auth:student');        
+        $this->middleware('student.verified:student');
+        
     }
 
     /**
@@ -25,7 +28,13 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index() {
+        
         return view('student.home');
     }
 
+    // public function mailverify() {
+        
+    //     return view('student.checkMailVerification');
+    // }
+    
 }
