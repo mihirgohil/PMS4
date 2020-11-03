@@ -10,13 +10,15 @@
                 <div class="card-body">
                     <form method="POST" action="{{ route('student.register') }}" aria-label="{{ __('Register') }}">
                         @csrf
-
+                        
                         <div class="form-group row">
+                          
                             <label for="enrollment_no" class="col-md-4 col-form-label text-md-right">{{ __('Enrollment No') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="number"  class="form-control{{ $errors->has('enrollment_no') ? ' is-invalid' : '' }}" name="enrollment_no" value="{{ old('enrollment_no') }}" required autofocus>
-
+                             
+                                <input id="enrollment_no" type="number"  class="form-control{{ $errors->has('enrollment_no') ? ' is-invalid' : '' }}" name="enrollment_no" value="{{ old('enrollment_no') }}" required autofocus>
+                                
                                 @if ($errors->has('enrollment_no'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('enrollment_no') }}</strong>
@@ -26,10 +28,10 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Student Name') }}</label>
+                            <label for="studentname" class="col-md-4 col-form-label text-md-right">{{ __('Student Name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control{{ $errors->has('studentname') ? ' is-invalid' : '' }}" name="studentname" value="{{ old('studentname') }}" required autofocus>
+                                <input id="studentname" type="text" class="form-control{{ $errors->has('studentname') ? ' is-invalid' : '' }}" name="studentname" value="{{ old('studentname') }}" required autofocus>
 
                                 @if ($errors->has('studentname'))
                                     <span class="invalid-feedback" role="alert">
@@ -43,7 +45,7 @@
                             <label for="dob" class="col-md-4 col-form-label text-md-right">{{ __('Date of Birth') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="date" class="form-control{{ $errors->has('dob') ? ' is-invalid' : '' }}" name="dob" value="{{ old('dob') }}" min="1997-01-01" max="2015-12-30" required autofocus>
+                                <input id="dob" type="date" class="form-control{{ $errors->has('dob') ? ' is-invalid' : '' }}" name="dob" value="{{ old('dob') }}" min="1997-01-01" max="2015-12-30" required autofocus>
 
                                 @if ($errors->has('dob'))
                                     <span class="invalid-feedback" role="alert">
@@ -170,11 +172,23 @@
                                         <strong>{{ $errors->first('cpi') }}</strong>
                                     </span>
                                 @endif
+                              
                             </div>
-                        </div>
+                        </div>  
+                       
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
+                                @if($errors->any())
+                                {{-- <div class="row collapse">  --}}
+                                     <ul class="alert alert-danger">
+                                         @foreach($errors->all() as $error)
+                                             <li> {{ $error }} </li>
+                                         @endforeach
+                                      </ul>
+                                  {{-- </div>  --}}
+                                @endif
+                                
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Register') }}
                                 </button>

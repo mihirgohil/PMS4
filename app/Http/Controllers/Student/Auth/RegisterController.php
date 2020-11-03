@@ -36,7 +36,7 @@ class RegisterController extends Controller
      * @return void
      */
     public function __construct()
-    {
+    {   
         $this->middleware('student.guest:student');
     }
 
@@ -47,10 +47,10 @@ class RegisterController extends Controller
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
-    {
+    { //  dd($data);
         return Validator::make($data, [
             'enrollment_no' => 'required|min:12|numeric',
-            'rollno' => 'required|max:255|numeric',
+            // 'rollno' => 'required|max:255|numeric',
             'studentname' => 'required|max:255',
             'dob' => 'required|date',
             'email' => 'required|email|max:255|unique:students',
@@ -71,10 +71,10 @@ class RegisterController extends Controller
      * @return \App\Student
      */
     protected function create(array $data)
-    {
+    {   
         return Student::create([
             'enrollment_no' => $data['enrollment_no'],
-            'rollno' => $data['rollno'],
+            // 'rollno' => $data['rollno'],
             'studentname' => $data['studentname'],
             'dob' => $data['dob'],
             'email' => $data['email'],
