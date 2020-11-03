@@ -33,7 +33,6 @@ class HomeController extends Controller
         return view('placement-coordinator.home');
     }
 
-
     //add new coordinator
     public function addNewCoordinatorShow()
     {
