@@ -50,7 +50,6 @@ class RegisterController extends Controller
     { //  dd($data);
         return Validator::make($data, [
             'enrollment_no' => 'required|min:12|numeric',
-            // 'rollno' => 'required|max:255|numeric',
             'studentname' => 'required|max:255',
             'dob' => 'required|date',
             'email' => 'required|email|max:255|unique:students',
@@ -74,7 +73,6 @@ class RegisterController extends Controller
     {   
         return Student::create([
             'enrollment_no' => $data['enrollment_no'],
-            // 'rollno' => $data['rollno'],
             'studentname' => $data['studentname'],
             'dob' => $data['dob'],
             'email' => $data['email'],
