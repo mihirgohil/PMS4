@@ -106,7 +106,7 @@
                with font-awesome or any other icon font library -->
                <li class="nav-item">
             <a href="{{ route('company.profile') }}" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-user"></i>
               <p>
                 Profile
               </p>
@@ -114,7 +114,7 @@
           </li>
           <li class="nav-item">
             <a href="{{ route('company.postInternship') }}" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-plus-square"></i>
               <p>
                 Post Internships
               </p>
@@ -122,7 +122,7 @@
           </li>
           <li class="nav-item">
             <a href="{{ route('company.workingInternship') }}" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-clipboard"></i>
               <p>
                 Working Internships
               </p>
@@ -130,7 +130,7 @@
           </li>
           <li class="nav-item">
             <a href="{{ route('company.history') }}" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-history"></i>
               <p>
                 History
               </p>
@@ -138,7 +138,7 @@
           </li>
           <li class="nav-item">
             <a href="{{ route('company.giveFeedback') }}" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-comments"></i>
               <p>
                 Give Feedback
               </p>

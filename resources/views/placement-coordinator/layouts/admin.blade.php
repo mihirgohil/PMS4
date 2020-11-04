@@ -102,7 +102,7 @@
                with font-awesome or any other icon font library -->
           <li class="nav-item">
             <a href="{{ route('placement-coordinator.placementDrive') }}" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-university"></i>
               <p>
                 Placement Drive
               </p>
@@ -119,19 +119,19 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{{ route('placement-coordinator.addCompany') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="far fa-plus-square nav-icon"></i>
                   <p>Add Company</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{ route('placement-coordinator.manageCompany') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="far fa-address-card nav-icon"></i>
                   <p>Manage company</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{ route('placement-coordinator.companyFeedback') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="far fa-comments nav-icon"></i>
                   <p>Company Feedback</p>
                 </a>
               </li>
@@ -148,19 +148,19 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{{ route('placement-coordinator.addStudent') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="far fa-plus-square nav-icon"></i>
                   <p>Add Student</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{ route('placement-coordinator.manageStudent') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="far fa-address-card nav-icon"></i>
                   <p>Manage Student</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{ route('placement-coordinator.studentFeedback') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="far fa-comments nav-icon"></i>
                   <p>Student Feedback</p>
                 </a>
               </li>
