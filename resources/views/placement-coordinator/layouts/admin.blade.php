@@ -101,7 +101,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('placement-coordinator.placementDrive') }}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Placement Drive
@@ -110,7 +110,7 @@
           </li>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
+              <i class="nav-icon fas fa-building"></i>
               <p>
                 Company
                 <i class="fas fa-angle-left right"></i>
@@ -118,19 +118,19 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('placement-coordinator.addCompany') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Company</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('placement-coordinator.manageCompany') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Manage company</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('placement-coordinator.companyFeedback') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Company Feedback</p>
                 </a>
@@ -139,7 +139,7 @@
           </li>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
+              <i class="nav-icon fas fa-user"></i>
               <p>
                 Student
                 <i class="fas fa-angle-left right"></i>
@@ -147,19 +147,19 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('placement-coordinator.addStudent') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Student</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('placement-coordinator.manageStudent') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Manage Student</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('placement-coordinator.studentFeedback') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Student Feedback</p>
                 </a>
@@ -179,7 +179,7 @@
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong><a href="http://adminlte.io">Placement Management System</a></strong>
+    <strong><a href="#">Placement Management System</a></strong>
   </footer>
 
   <!-- Control Sidebar -->

@@ -3,6 +3,19 @@
 Route::group(['namespace' => 'PlacementCoordinator'], function() {
     Route::get('/', 'HomeController@index')->name('placement-coordinator.dashboard');
 
+    //placement drive
+    Route::get('/placementDrive', 'HomeController@addPlacementDrive')->name('placement-coordinator.placementDrive');
+
+    //Company
+    Route::get('/addCompany', 'HomeController@addCompany')->name('placement-coordinator.addCompany');
+    Route::get('/manageCompany', 'HomeController@manageCompany')->name('placement-coordinator.manageCompany');
+    Route::get('/companyFeedback', 'HomeController@companyFeedback')->name('placement-coordinator.companyFeedback');
+   
+     //Student
+    Route::get('/addStudent', 'HomeController@addStudent')->name('placement-coordinator.addStudent');
+    Route::get('/manageStudent', 'HomeController@manageStudent')->name('placement-coordinator.manageStudent');
+    Route::get('/studentFeedback', 'HomeController@studentFeedback')->name('placement-coordinator.studentFeedback');
+ 
     // Login
     Route::get('login', 'Auth\LoginController@showLoginForm')->name('placement-coordinator.login');
     Route::post('login', 'Auth\LoginController@login');

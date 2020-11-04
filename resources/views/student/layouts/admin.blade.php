@@ -105,40 +105,40 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+            <a href="{{ route('student.profile') }}" class="nav-link">
+              <i class="nav-icon fas fa-user"></i>
               <p>
                 Profile
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+            <a href="{{ route('student.streams') }}" class="nav-link">
+              <i class="nav-icon fas fa-copy"></i>
               <p>
                 Streams
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+            <a href="{{ route('student.appliedInternship') }}" class="nav-link">
+              <i class="nav-icon fas fa-check-circle"></i>
               <p>
                 Applied for Internship
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+            <a href="{{ route('student.optout') }}" class="nav-link">
+              <i class="nav-icon fas fa-building"></i>
               <p>
                 Opt-Out
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+            <a href="{{ route('student.giveFeedback') }}" class="nav-link">
+              <i class="nav-icon fas fa-comments"></i>
               <p>
                 Give Feedback
               </p>
@@ -157,7 +157,7 @@
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong><a href="http://adminlte.io">Placement Management System</a></strong>
+    <strong><a href="#">Placement Management System</a></strong>
   </footer>
 
   <!-- Control Sidebar -->

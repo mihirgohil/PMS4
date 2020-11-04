@@ -33,6 +33,44 @@ class HomeController extends Controller
         return view('placement-coordinator.home');
     }
 
+    //placement dirve
+    public function addPlacementDrive()
+    {
+        return view('placement-coordinator.placementDrive');
+    }
+
+    //Company
+    public function addCompany()
+    {
+        return view('placement-coordinator.addCompany');
+    }
+    
+    public function manageCompany()
+    {
+        return view('placement-coordinator.manageCompany');
+    }
+
+    public function companyFeedback()
+    {
+        return view('placement-coordinator.companyFeedback');
+    }
+
+    //Student
+    public function addStudent()
+    {
+        return view('placement-coordinator.addStudent');
+    }
+    
+    public function manageStudent()
+    {
+        return view('placement-coordinator.manageStudent');
+    }
+
+    public function studentFeedback()
+    {
+        return view('placement-coordinator.studentFeedback');
+    }
+
     //add new coordinator
     public function addNewCoordinatorShow()
     {

@@ -105,7 +105,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('company.profile') }}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Profile
@@ -113,7 +113,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('company.postInternship') }}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Post Internships
@@ -121,23 +121,23 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('company.workingInternship') }}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Working internships
+                Working Internships
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('company.history') }}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Complete internships
+                History
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('company.giveFeedback') }}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Give Feedback
@@ -157,7 +157,7 @@
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong><a href="http://adminlte.io">Placement Management System</a></strong>
+    <strong><a href="#">Placement Management System</a></strong>
   </footer>
 
   <!-- Control Sidebar -->

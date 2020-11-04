@@ -23,4 +23,10 @@ Route::group(['namespace' => 'Company'], function() {
     Route::get('email/verify','Auth\VerificationController@show')->name('company.verification.notice');
     Route::get('email/verify/{id}','Auth\VerificationController@verify')->name('company.verification.verify');
 
+    //Company homepage
+    Route::get('/profile', 'HomeController@profile')->name('company.profile');
+    Route::get('/addpost', 'HomeController@addPost')->name('company.postInternship');
+    Route::get('/workingInternship', 'HomeController@workingInternship')->name('company.workingInternship');
+    Route::get('/history', 'HomeController@history')->name('company.history');
+    Route::get('/givefeedback', 'HomeController@giveFeedback')->name('company.giveFeedback');
 });

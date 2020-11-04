@@ -32,6 +32,37 @@ class HomeController extends Controller
         return view('student.home');
     }
 
+    //Student Profile
+    public function profile()
+    {
+        return view('student.profile');
+    }
+
+    //Student streams
+    public function streams()
+    {
+        return view('student.streams');
+    }
+
+    //Student apply for internship
+    public function appliedInternship()
+    {
+        return view('student.appliedInternship');
+    }
+
+    //Student Opt-Out
+    public function optout()
+    {
+        return view('student.optout');
+    }
+
+    //Student give feedback
+    public function giveFeedback()
+    {
+        return view('student.giveFeedback');
+    }
+
+
     // public function mailverify() {
         
     //     return view('student.checkMailVerification');
