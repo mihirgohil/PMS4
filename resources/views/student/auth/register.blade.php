@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Student Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('student.register') }}" aria-label="{{ __('Register') }}" enctype="multipart/form-data">
+                    <form method="POST" id="frm"  name="frm" action="{{ route('student.register') }}" aria-label="{{ __('Register') }}" onsubmit="return validate()" enctype="multipart/form-data">
                         @csrf
                         
                         <div class="form-group row">
@@ -16,7 +16,7 @@
                                 <div class="picture-container">
                                     <div class="picture"> 
                                         <img src="{{ asset('/images/user1.png') }}" class="picture-src" id="wizardPicturePreview">
-                                        <input id="wizard-picture" type="file" class="form-control{{ $errors->has('avatar') ? ' is-invalid' : '' }}" name="avatar" value="{{ old('avatar') }}"  required>
+                                        <input id="wizard-picture" type="file" class="form-control{{ $errors->has('avatar') ? ' is-invalid' : '' }}" onchange="readURL(this)" name="avatar" value="{{ old('avatar') }}">
                                     </div>
                                     <h6>Choose Picture</h6>
                                 </div>
@@ -124,7 +124,10 @@
                             <label for="drive" class="col-md-4 col-form-label text-md-right">{{ __('Select Placement Drive') }}</label>
                             <div class="col-md-6">
                                 <select id="drive" class="form-control" name="drive">           
-                                    <option value="">Drive name </option>
+                                    <option value="default_drive">Drive name </option>
+                                    @foreach($drive as $data)
+                                    <option value="{{ $data->id }}">{{$data->drive_name}} </option>
+                                    @endforeach
                                 </select>
                            </div>
                         </div>
@@ -240,7 +243,9 @@
         } 
     } 
 </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
+
     $(document).ready(function(){
 // Prepare the preview for profile picture
     $("#wizard-picture").change(function(){
@@ -257,5 +262,25 @@ function readURL(input) {
         reader.readAsDataURL(input.files[0]);
     }
 }
+$("#frm").submit(function(event){
+ // var valDDL = $(this).val();
+        //event.preventDefault();
+         var drive = $("#drive").val();
+         if(drive=="default_drive")
+         {
+              event.preventDefault();
+              alert("select Placement Drive");
+         }
+ });
+ function validate(){
+    var drive = $("#drive").val();
+         if(drive=="default_drive")
+         {
+              
+              alert("select Placement Drive");
+              return false;
+         }
+         return true;
+ }
 </script>
 @endsection

@@ -18,7 +18,7 @@ class Student extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'enrollment_no','studentname','dob', 'email', 'password','avatar','phone','ssc','hsc','ug','stream','cpi',
+        'enrollment_no','studentname','dob', 'email', 'password','avatar','phone','ssc','hsc','ug','stream','cpi','placement_drive_id',
     ];
 
     /**

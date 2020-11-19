@@ -5,9 +5,12 @@ use App\Company;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Auth;
 
 use Notification;
 use Illuminate\Support\Facades\Mail;
+
+use App\Internship_Post;
 
 use App\Add_Company_Coordinator;
 
@@ -70,6 +73,32 @@ class HomeController extends Controller
     public function addPost(){
         return view('company.postInternship');
     }
+
+    public function addPostSave(Request $request){
+        $company_id = Auth::guard('company')->user()->getId();
+        $request->validate([
+        'co_details' => 'required','overview'=> 'required','duration'=> 'required','recruitment'=> 'required','position'=> 'required','modeofinterview'=> 'required','workinghours'=> 'required','ctc'=> 'required','bond'=> 'required','stipend'=> 'required',
+        ]);
+        $data = array(
+            'co_details' => $request->get('co_details'),
+            'overview' => $request->get('overview'),
+            'duration' => $request->get('duration'),
+            'recruitment' => $request->get('recruitment'),
+            'position'=>$request->get('position'),
+            'modeofinterview'=> $request->get('modeofinterview'),
+            'workinghours'=> $request->get('workinghours'),
+            'ctc'=> $request->get('ctc'),
+            'bond'=> $request->get('bond'),
+            'stipend'=> $request->get('stipend'),
+            'is_posted'=> false,
+            'is_completed'=> false,
+            'company_id'=> $company_id,
+      );
+    //   dd($data);
+      Internship_Post::create($data);
+      return redirect()->back()->with('status', 'Internship Post Created And Submited To CPI Coordinator! Thank you.');
+    }
+    
 
     //Company working internship
     public function workingInternship(){

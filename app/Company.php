@@ -58,4 +58,9 @@ class Company extends Authenticatable
     {
         $this->notify(new CompanyVerifyEmail);
     }
+
+    public function getId()
+    {
+        return $this->id;
+    }
 }

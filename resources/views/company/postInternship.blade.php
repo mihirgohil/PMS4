@@ -32,7 +32,7 @@
                         </div>
                     @endif
                    
-                    <form method="POST" action="#" aria-label="{{ __('Register') }}">
+                    <form method="POST" action="/addpost" aria-label="{{ __('Register') }}">
                         @csrf
                        
                         @if(isset($status))
@@ -179,8 +179,7 @@
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Save') }}
-                                </button>
-                                <a href="{{ route('placement-coordinator.placementDrive') }}" class="btn btn btn-danger float-right">Back</a>
+                                </button>   
                             </div>
                         </div>
                     </form>

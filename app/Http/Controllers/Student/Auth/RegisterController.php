@@ -10,6 +10,9 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Image;
 
+use App\Placement_drive;
+
+
 class RegisterController extends Controller
 {
     /*
@@ -63,6 +66,7 @@ class RegisterController extends Controller
             'ug' => 'required|numeric',
             'stream' => 'required|max:255',
             'cpi' => 'required|numeric',
+            'drive' => 'required',
         ]);
     }
 
@@ -73,7 +77,7 @@ class RegisterController extends Controller
      * @return \App\Student
      */
     protected function create(array $data)
-    {           
+    {  // dd($data);        
         if(request()->has('avatar')){
             $avataruploaded = request()->file('avatar');
             $avatarname = time().'.'.$avataruploaded->getClientOriginalExtension();
@@ -92,6 +96,7 @@ class RegisterController extends Controller
                 'ug' => $data['ug'],
                 'stream' => $data['stream'],
                 'cpi' => $data['cpi'],
+                'placement_drive_id'=> $data['drive'],
             ]);
         }
         return Student::create([
@@ -106,6 +111,7 @@ class RegisterController extends Controller
             'ug' => $data['ug'],
             'stream' => $data['stream'],
             'cpi' => $data['cpi'],
+            'placement_drive_id'=> $data['drive']
         ]);
     }
         
@@ -117,8 +123,8 @@ class RegisterController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function showRegistrationForm()
-    {
-        return view('student.auth.register');
+    {   $drives = Placement_drive::where('is_completed', 0)->get(); 
+        return view('student.auth.register')->with(['drive'=>$drives]);
     }
 
     /**
