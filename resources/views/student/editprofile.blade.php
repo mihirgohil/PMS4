@@ -1,9 +1,9 @@
-@extends('student.layouts.app')
+@extends('student.layouts.admin')
 
-@section('content')
+@section('main_content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-8" style="margin:50px;">
             <div class="card">
                 <div class="card-header">Update Profile</div>
 
@@ -50,6 +50,10 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Update Profile') }}
                                 </button>
+                                    
+                                <a href="{{route('student.stuprofile') }}" class="btn btn-primary float-right">
+                                    {{ __('Back') }}
+                                </a>
                             </div>
                         </div>
                     </form>

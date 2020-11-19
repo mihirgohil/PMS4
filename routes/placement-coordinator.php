@@ -3,19 +3,6 @@
 Route::group(['namespace' => 'PlacementCoordinator'], function() {
     Route::get('/', 'HomeController@index')->name('placement-coordinator.dashboard');
 
-    //placement drive
-    Route::get('/placementDrive', 'HomeController@addPlacementDrive')->name('placement-coordinator.placementDrive');
-
-    //Company
-    Route::get('/addCompany', 'HomeController@addCompany')->name('placement-coordinator.addCompany');
-    Route::get('/manageCompany', 'HomeController@manageCompany')->name('placement-coordinator.manageCompany');
-    Route::get('/companyFeedback', 'HomeController@companyFeedback')->name('placement-coordinator.companyFeedback');
-   
-     //Student
-    Route::get('/addStudent', 'HomeController@addStudent')->name('placement-coordinator.addStudent');
-    Route::get('/manageStudent', 'HomeController@manageStudent')->name('placement-coordinator.manageStudent');
-    Route::get('/studentFeedback', 'HomeController@studentFeedback')->name('placement-coordinator.studentFeedback');
- 
     // Login
     Route::get('login', 'Auth\LoginController@showLoginForm')->name('placement-coordinator.login');
     Route::post('login', 'Auth\LoginController@login');
@@ -39,5 +26,30 @@ Route::group(['namespace' => 'PlacementCoordinator'], function() {
     //add new coordinator
     Route::get('/addNewCoordinator', 'HomeController@addNewCoordinatorShow')->name('placement-coordinator.addNewCo');
     Route::Post('/addNewCoordinator/store','HomeController@addNewCoordinatorStore')->name('placement-coordinator.addNewCo.store');
+
+    //placement drive
+    Route::get('/placementDrive', 'HomeController@addPlacementDrive')->name('placement-coordinator.placementDrive');
+    Route::get('/addNewDrive', 'HomeController@addNewDrive')->name('placement-coordinator.addNewDrive');
+    Route::post('/addNewDrive/Save', 'HomeController@addNewDriveSave')->name('placement-coordinator.addNewDriveSave');
+    Route::post('/placementDrive/close', 'HomeController@closePlacementDrive')->name('placement-coordinator.closePlacementDrive');
+    
+    //profile
+    Route::get('/profile', 'HomeController@pcprofile')->name('placement-coordinator.pcprofile');
+    Route::get('/profile/edit', 'HomeController@editpcprofile')->name('placement-coordinator.editpcprofile');
+    Route::post('/profile/update', 'HomeController@update')->name('placement-coordinator.updatepcprofile');
+    
+    //company
+    Route::get('/addCompany', 'HomeController@addCompany')->name('placement-coordinator.addCompany');
+    Route::get('/manageCompany', 'HomeController@manageCompany')->name('placement-coordinator.manageCompany');
+    Route::get('/companyFeedback', 'HomeController@companyFeedback')->name('placement-coordinator.companyFeedback');
+   
+     //Student
+    Route::get('/addStudent', 'HomeController@addStudent')->name('placement-coordinator.addStudent');
+    Route::get('/manageStudent', 'HomeController@manageStudent')->name('placement-coordinator.manageStudent');
+    Route::get('/studentFeedback', 'HomeController@studentFeedback')->name('placement-coordinator.studentFeedback');
+
+    //internship
+    Route::get('/internship', 'HomeController@pcinternship')->name('placement-coordinator.pcinternship');
+ 
 
 });

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -13,7 +14,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     /**
@@ -22,7 +23,17 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {
-        return view('home');
+    {  
+        if(Auth::guard('placement-coordinator')->check()) {
+            return redirect('placement-coordinator');
+        }
+        if(Auth::guard('student')->check()) {
+            return redirect('student');
+        }
+        if(Auth::guard('company')->check()) {
+            return redirect('company');
+        }
+
+        return view('homepage');
     }
 }

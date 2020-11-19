@@ -1,6 +1,6 @@
-@extends('placement-coordinator.layouts.app')
+@extends('placement-coordinator.layouts.admin')
 
-@section('content')
+@section('main_content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">

@@ -35,9 +35,14 @@ Route::group(['namespace' => 'Student'], function() {
     Route::post('update', 'EditprofileController@update')->name('student.updateprofile');
 
     //Student homepage
-    Route::get('/profile', 'HomeController@profile')->name('student.profile');
+    Route::get('/profile', 'HomeController@stuprofile')->name('student.stuprofile');
+    Route::get('/profile/showprofile','HomeController@showprofile')->name('student.showprofile');
     Route::get('/streams', 'HomeController@streams')->name('student.streams');
     Route::get('/appliedInternship', 'HomeController@appliedInternship')->name('student.appliedInternship');
     Route::get('/optoutForm', 'HomeController@optout')->name('student.optout');
     Route::get('/feedback', 'HomeController@giveFeedback')->name('student.giveFeedback');
+
+     //internship
+     Route::get('/internship', 'HomeController@interndetails')->name('student.interndetails');
+ 
 });

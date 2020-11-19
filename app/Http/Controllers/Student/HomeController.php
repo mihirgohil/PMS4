@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Student;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Student\Auth\VerificationController;
 
+
 class HomeController extends Controller
 {
 
@@ -33,15 +34,26 @@ class HomeController extends Controller
     }
 
     //Student Profile
-    public function profile()
+    public function stuprofile()
     {
-        return view('student.profile');
+        return view('student.stuprofile');
+    }
+
+    public function showprofile()
+    {
+        return view('student.showprofile');
     }
 
     //Student streams
     public function streams()
     {
         return view('student.streams');
+    }
+
+    //internship
+    public function interndetails()
+    {
+        return view('student.interndetails');
     }
 
     //Student apply for internship

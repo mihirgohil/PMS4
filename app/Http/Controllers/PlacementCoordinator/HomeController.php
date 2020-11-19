@@ -5,10 +5,15 @@ use App\PlacementCoordinator;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\PlacementCoordinator\UpdatePcProfileRequest;
+use Auth;
 
 use Notification;
 use App\Notifications\CoordinatorRegistrationNotification;
 use Illuminate\Support\Facades\Mail;
+
+use App\Placement_drive;
+
 class HomeController extends Controller
 {
 
@@ -33,10 +38,67 @@ class HomeController extends Controller
         return view('placement-coordinator.home');
     }
 
+    // Placement Coordinator Profile
+    public function pcprofile()
+    {
+        return view('placement-coordinator.pcprofile');
+    }
+
+    public function editpcprofile(){ 
+        return view('placement-coordinator.editpcprofile');
+   }
+
+  public function update(UpdatePcProfileRequest $request){
+      
+      $user = Auth::guard('placement-coordinator')->user();
+
+      $user->update([
+          'name' => $request->name,
+      ]);
+
+      session()->flash('success', 'Profile updated successfully.');
+
+      return redirect()->back();
+  }
+
+    //internship
+    public function pcinternship()
+    {
+        return view('placement-coordinator.pcinternship');
+    }
+
     //placement dirve
     public function addPlacementDrive()
+    {   $drives = Placement_drive::all();
+        return view('placement-coordinator.placementDrive')->with(['drive'=>$drives]);
+    }
+
+    public function addNewDrive()
+    {   
+        return view('placement-coordinator.addNewDrive');
+    }
+
+    public function addNewDriveSave(Request $request)
     {
-        return view('placement-coordinator.placementDrive');
+        $request->validate([
+            'drive_name' => 'required|max:255']);
+        $data = array(
+            'drive_name' => $request->get('drive_name'),
+            'is_completed'=>0,
+        ); 
+
+            $drive = new Placement_drive($data);
+            $drive->save();
+        return redirect()->back()->with('status', 'New Placement Drive Created successfully.');
+    }
+
+    public function closePlacementDrive(Request $request)
+    {
+        // dd($request->drid);
+       $drive = Placement_drive::find($request->drid);
+       $drive->is_completed = 1;
+       $drive->save();
+       return redirect()->back();
     }
 
     //Company

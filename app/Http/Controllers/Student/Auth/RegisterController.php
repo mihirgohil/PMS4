@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use Image;
 
 class RegisterController extends Controller
 {
@@ -49,11 +51,12 @@ class RegisterController extends Controller
     protected function validator(array $data)
     { //  dd($data);
         return Validator::make($data, [
-            'enrollment_no' => 'required|min:12|numeric',
+            'enrollment_no' => 'required|min:12|numeric|unique:students',
             'studentname' => 'required|max:255',
             'dob' => 'required|date',
             'email' => 'required|email|max:255|unique:students',
             'password' => 'required|min:6|confirmed',
+            'avatar' => 'required|image|mimes:jpg,jpeg,png,svg,bmp|max:5000',
             'phone' => 'required|min:10|numeric',
             'ssc' => 'required|numeric',
             'hsc' => 'required|numeric',
@@ -70,7 +73,27 @@ class RegisterController extends Controller
      * @return \App\Student
      */
     protected function create(array $data)
-    {   
+    {           
+        if(request()->has('avatar')){
+            $avataruploaded = request()->file('avatar');
+            $avatarname = time().'.'.$avataruploaded->getClientOriginalExtension();
+            $avatarpath = public_path('/images/');
+            $avataruploaded->move($avatarpath, $avatarname);
+            return Student::create([
+                'enrollment_no' => $data['enrollment_no'],
+                'studentname' => $data['studentname'],
+                'dob' => $data['dob'],
+                'email' => $data['email'],
+                'password' => bcrypt($data['password']),
+                'avatar' => '/images/' . $avatarname,
+                'phone' => $data['phone'],
+                'ssc' => $data['ssc'],
+                'hsc' => $data['hsc'],
+                'ug' => $data['ug'],
+                'stream' => $data['stream'],
+                'cpi' => $data['cpi'],
+            ]);
+        }
         return Student::create([
             'enrollment_no' => $data['enrollment_no'],
             'studentname' => $data['studentname'],
@@ -85,6 +108,8 @@ class RegisterController extends Controller
             'cpi' => $data['cpi'],
         ]);
     }
+        
+        
 
     /**
      * Show the application registration form.

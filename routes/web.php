@@ -14,13 +14,17 @@
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::get('/', function () {
-    return view('homepage');
-})->name('home');
+// Route::get('/', function () {
+//     return view('homepage');
+// })->name('home');
 
 // Auth::routes(['verify' => true]);
 // Auth::routes();
 
 // Auth::routes(['verify' => true]);
+
+Route::get('/', 'HomeController@index')->name('home');
+
+Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

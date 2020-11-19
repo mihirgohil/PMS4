@@ -6,7 +6,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Company</h1>
+            <h1 class="m-0 text-dark">Company homepage</h1>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -16,8 +16,10 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        Company page
-      </div>
+        <div class="wrapper"> 
+          <img src="images/bg2.png" style="width:100%;height:73vh;background-size:cover;">
+		    </div>  
+		  </div>
     </section>
     <!-- /.content -->
 @endsection

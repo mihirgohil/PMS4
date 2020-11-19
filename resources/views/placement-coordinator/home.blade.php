@@ -16,8 +16,10 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        College page
-      </div>
+        <div class="wrapper"> 
+          <img src="images/bg2.png" style="width:100%;height:73vh;background-size:cover;">
+		    </div>  
+		  </div>
     </section>
     <!-- /.content -->
 @endsection

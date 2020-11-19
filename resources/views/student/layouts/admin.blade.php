@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>PMS :: Student</title>
+  <title>PMS | Student</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -38,24 +38,11 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Home</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
+        <a href="{{ route('student.dashboard') }}" class="nav-link">Home</a>
       </li>
     </ul>
 
     <!-- SEARCH FORM -->
-    <form class="form-inline ml-3">
-      <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-        <div class="input-group-append">
-          <button class="btn btn-navbar" type="submit">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
-      </div>
-    </form>
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
       <!-- Messages Dropdown Menu -->
@@ -75,8 +62,8 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-      <img src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+    <a href="#" class="brand-link">
+      <img src="{{ asset('images/student_icon.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
       <span class="brand-text font-weight-light">Student</span>
     </a>
@@ -86,7 +73,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
+          <img src="{{ asset(Auth::guard('student')->user()->avatar) }} " class="img-circle elevation-2" style="width:50px; height:50px;position:relative; border-radius:50%" alt="">
         </div>
         <div class="info">
           <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -105,7 +92,15 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="{{ route('student.profile') }}" class="nav-link">
+            <a href="{{ route('student.dashboard') }}" class="nav-link">
+            <i class="nav-icon fas fa-home"></i>
+              <p>
+                Home
+              </p>
+            </a>
+          </li> 
+          <li class="nav-item">
+            <a href="{{ route('student.stuprofile') }}" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>
                 Profile
@@ -113,10 +108,10 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('student.streams') }}" class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
+            <a href="{{ route('student.interndetails') }}" class="nav-link">
+              <i class="nav-icon fas fa-briefcase"></i>
               <p>
-                Streams
+                Internships
               </p>
             </a>
           </li>
@@ -125,6 +120,14 @@
               <i class="nav-icon fas fa-check-circle"></i>
               <p>
                 Applied for Internship
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('student.streams') }}" class="nav-link">
+              <i class="nav-icon fas fa-copy"></i>
+              <p>
+                Streams
               </p>
             </a>
           </li>

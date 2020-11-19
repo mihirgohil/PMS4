@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePlacementCoordinatorsTable extends Migration
+class CreatePlacementDrivesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,11 @@ class CreatePlacementCoordinatorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('placement-coordinators', function (Blueprint $table) {
+        Schema::create('placement_drives', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->string('drive_name');
             $table->timestamps();
+            $table->boolean('is_completed')->default(0);
         });
     }
 
@@ -31,6 +28,6 @@ class CreatePlacementCoordinatorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('placement-coordinators');
+        Schema::dropIfExists('placement_drives');
     }
 }

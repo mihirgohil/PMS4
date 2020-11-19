@@ -8,15 +8,30 @@
                 <div class="card-header">{{ __('Student Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('student.register') }}" aria-label="{{ __('Register') }}">
+                    <form method="POST" action="{{ route('student.register') }}" aria-label="{{ __('Register') }}" enctype="multipart/form-data">
                         @csrf
                         
                         <div class="form-group row">
-                          
-                            <label for="enrollment_no" class="col-md-4 col-form-label text-md-right">{{ __('Enrollment No') }}</label>
+                            <div class="col-md-12">
+                                <div class="picture-container">
+                                    <div class="picture"> 
+                                        <img src="{{ asset('/images/user1.png') }}" class="picture-src" id="wizardPicturePreview">
+                                        <input id="wizard-picture" type="file" class="form-control{{ $errors->has('avatar') ? ' is-invalid' : '' }}" name="avatar" value="{{ old('avatar') }}"  required>
+                                    </div>
+                                    <h6>Choose Picture</h6>
+                                </div>
+                                @if ($errors->has('avatar'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('avatar') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
 
+                        <div class="form-group row">
+                            <label for="enrollment_no" class="col-md-4 col-form-label text-md-right">{{ __('Enrollment No') }}</label>
+                            
                             <div class="col-md-6">
-                             
                                 <input id="enrollment_no" type="text" onkeypress="return onlyNumberKey(event)" maxlength="12" minlength="12" class="form-control{{ $errors->has('enrollment_no') ? ' is-invalid' : '' }}" name="enrollment_no" value="{{ old('enrollment_no') }}" required autofocus>
                                 
                                 @if ($errors->has('enrollment_no'))
@@ -106,6 +121,15 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="drive" class="col-md-4 col-form-label text-md-right">{{ __('Select Placement Drive') }}</label>
+                            <div class="col-md-6">
+                                <select id="drive" class="form-control" name="drive">           
+                                    <option value="">Drive name </option>
+                                </select>
+                           </div>
+                        </div>
+                        
+                        <div class="form-group row">
                             <label for="ssc" class="col-md-4 col-form-label text-md-right">{{ __('S.S.C (%)') }}</label>
 
                             <div class="col-md-6">
@@ -175,7 +199,7 @@
                               
                             </div>
                         </div>  
-                       
+
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
@@ -215,5 +239,23 @@
         return true;
         } 
     } 
+</script>
+<script>
+    $(document).ready(function(){
+// Prepare the preview for profile picture
+    $("#wizard-picture").change(function(){
+        readURL(this);
+    });
+});
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#wizardPicturePreview').attr('src', e.target.result).fadeIn('slow');
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
 </script>
 @endsection

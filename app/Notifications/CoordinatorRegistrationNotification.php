@@ -46,8 +46,8 @@ class CoordinatorRegistrationNotification extends Notification
     {
        
         return (new MailMessage())
-            ->subject("New Registration for PMS coordinator")
-            ->line("You are registered as an PMS coordinator with this Email. Now you can login with these credentials.")
+            ->subject("New Registration for Coordinator")
+            ->line("You are registered as an Placement Coordinator with this Email. Now you can login with these credentials.")
             ->line("Your password is - {$this->password}")
             ->line('We suggest you to change this password as soon as possible.')
             ->action("Login as PMS coordinator", route('placement-coordinator.login'))

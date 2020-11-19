@@ -17,7 +17,7 @@ class Company extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','address','website','avatar','phone',
     ];
 
     /**
@@ -58,5 +58,4 @@ class Company extends Authenticatable
     {
         $this->notify(new CompanyVerifyEmail);
     }
-
 }

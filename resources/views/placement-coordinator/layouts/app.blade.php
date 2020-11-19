@@ -24,7 +24,7 @@
 <div id="app">
     <nav class="navbar navbar-expand-md navbar-dark bg-dark navbar-laravel">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{{ route('placement-coordinator.dashboard') }}">
+            <a class="navbar-brand" href="{{ url('/') }}">
             <img src="{{ asset('images/college_logo.png') }}"  width="30" height="30" class="d-inline-block align-top" alt="">
                 {{ __('CPPGICA Placement Program') }}
             </a>

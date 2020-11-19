@@ -19,6 +19,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/register.css') }}" rel="stylesheet">
+
 </head>
 <body>
 <div id="app">
@@ -53,7 +55,7 @@
                                 {{ Auth::guard('student')->user()->studentname }} <span class="caret"></span>
                             </a>
 
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <!-- <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('student.profile') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('profile-form').submit();">
@@ -70,7 +72,7 @@
                                 </a>
                                 <form id="updateprofile-form" action="{{ route('student.editprofile') }}" method="GET" style="display: none;">
                                 @csrf
-                                </form>
+                                </form> -->
 
                                 <a class="dropdown-item" href="{{ route('student.logout') }}"
                                    onclick="event.preventDefault();

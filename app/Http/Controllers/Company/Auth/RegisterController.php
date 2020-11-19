@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use Image;
 
 class RegisterController extends Controller
 {
@@ -47,11 +49,16 @@ class RegisterController extends Controller
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
-    {
+    { 
+        //dd($data);
         return Validator::make($data, [
             'name' => 'required|max:255',
+            'address' => 'required|max:255',
+            'website' => 'required|url',
             'email' => 'required|email|max:255|unique:companies',
             'password' => 'required|min:6|confirmed',
+            'avatar' => 'required|image|mimes:jpg,jpeg,png,svg,bmp|max:5000',
+            'phone' => 'required|min:10|numeric',
         ]);
     }
 
@@ -63,10 +70,28 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        if(request()->has('avatar')){
+            $avataruploaded = request()->file('avatar');
+            $avatarname = time().'.'.$avataruploaded->getClientOriginalExtension();
+            $avatarpath = public_path('/images/');
+            $avataruploaded->move($avatarpath, $avatarname);
+            return Company::create([
+                'name' => $data['name'],
+                'address' => $data['address'],
+                'website' => $data['website'],
+                'email' => $data['email'],
+                'password' => bcrypt($data['password']),
+                'avatar' => '/images/' . $avatarname,
+                'phone' => $data['phone'],
+            ]);
+        }
         return Company::create([
             'name' => $data['name'],
+            'address' => $data['address'],
+            'website' => $data['website'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'phone' => $data['phone'],
         ]);
     }
 
