@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Mail;
 
 use App\Internship_Post;
 use App\Company_feedback;
-
+use App\Placement_drive;
 use App\Add_Company_Coordinator;
 
 class HomeController extends Controller
@@ -92,13 +92,24 @@ class HomeController extends Controller
 
     //Company add post
     public function addPost(){
-        return view('company.postInternship');
+        $drives = Placement_drive::all();
+        return view('company.postInternship')->with(['drive'=>$drives]);
     }
 
     public function addPostSave(Request $request){
         $company_id = Auth::guard('company')->user()->getId();
         $request->validate([
-        'co_details' => 'required','overview'=> 'required','duration'=> 'required','recruitment'=> 'required','position'=> 'required','modeofinterview'=> 'required','workinghours'=> 'required','ctc'=> 'required','bond'=> 'required','stipend'=> 'required',
+        'co_details' => 'required',
+        'overview'=> 'required',
+        'duration'=> 'required',
+        'recruitment'=> 'required',
+        'position'=> 'required',
+        'modeofinterview'=> 'required',
+        'workinghours'=> 'required',
+        'ctc'=> 'required',
+        'bond'=> 'required',
+        'stipend'=> 'required',
+        'drive'=>'required',
         ]);
         $data = array(
             'co_details' => $request->get('co_details'),
@@ -114,8 +125,9 @@ class HomeController extends Controller
             'is_posted'=> false,
             'is_completed'=> false,
             'company_id'=> $company_id,
+            'placement_drive_id'=>$request->get('drive'),
       );
-    //   dd($data);
+    // dd($data);
       Internship_Post::create($data);
       return redirect()->back()->with('status', 'Internship Post Created And Submited To CPI Coordinator! Thank you.');
     }

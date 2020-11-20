@@ -51,6 +51,8 @@ Route::group(['namespace' => 'PlacementCoordinator'], function() {
    
      //Student
     Route::get('/addStudent', 'HomeController@addStudent')->name('placement-coordinator.addStudent');
+    Route::post('/addStudent', 'HomeController@addStudentStore')->name('placement-coordinator.addStudentStore');
+    
     Route::get('/manageStudent', 'HomeController@manageStudent')->name('placement-coordinator.manageStudent');
     Route::get('/studentFeedback', 'HomeController@studentFeedback')->name('placement-coordinator.studentFeedback');
 

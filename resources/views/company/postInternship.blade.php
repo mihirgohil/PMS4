@@ -57,6 +57,18 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="drive" class="col-md-4 col-form-label text-md-right">{{ __('Select Placement Drive') }}</label>
+                            <div class="col-md-6">
+                                <select id="drive" class="form-control" name="drive">           
+                                    <option value="default_drive">Drive name </option>
+                                    @foreach($drive as $data)
+                                    <option value="{{ $data->id }}">{{$data->drive_name}} </option>
+                                    @endforeach    
+                                </select>
+                           </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="overview" class="col-md-4 col-form-label text-md-right">{{ __('Company 
                             Overview') }}</label>
 
@@ -125,7 +137,8 @@
                                     </span>
                                 @endif
                             </div>
-                        </div><div class="form-group row">
+                        </div>
+                        <div class="form-group row">
                             <label for="workinghours" class="col-md-4 col-form-label text-md-right">{{ __('Working Hours') }}</label>
 
                             <div class="col-md-6">
