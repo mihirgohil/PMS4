@@ -128,10 +128,15 @@ class HomeController extends Controller
       return redirect()->back()->with('status', 'Internship Post Created! Thank you.');
     }
 
-
-    public function manageinternship()
-    {
-        return view('placement-coordinator.managePublish');
+    public function managePublishSelectDrive()
+    {   $drives = Placement_drive::where('is_completed', 0)->get();
+        return view('placement-coordinator.managePublishSelectDrive')->with(['drive'=>$drives]);
+    }
+    public function manageinternship(Request $request)
+    {   $id = $request->input('id');
+        $posts = Internship_Post::where('placement_drive_id',$id)->get();
+        // dd($posts);  
+        return view('placement-coordinator.managePublish',['posts'=>$posts]);
     }
 
 
