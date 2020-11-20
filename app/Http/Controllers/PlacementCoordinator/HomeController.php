@@ -214,6 +214,38 @@ class HomeController extends Controller
         return view('placement-coordinator.manageCompany')->with(['company'=>$company]);
     }
 
+    public function editCompanySelect(Request $request)
+    {   $id = $request->input('id');
+        $company = Company::find($id);
+        // dd($company);
+        return view('placement-coordinator.editCompanyProfile')->with(['company'=>$company]);
+    } 
+    
+    public function editCompanySave(Request $request)
+    {   
+        if(request()->has('avatar')){
+            $avataruploaded = request()->file('avatar');
+            $avatarname = time().'.'.$avataruploaded->getClientOriginalExtension();
+            $avatarpath = public_path('/images/');
+            $avataruploaded->move($avatarpath, $avatarname);
+            Company::where('id',$request->id)->update(array(
+            'avatar' => '/images/' . $avatarname,
+            'name' => $request->name,
+            'website' => $request->website,
+            'phone' => $request->phone));
+        }
+        else{
+            Company::where('id',$request->id)->update(array(
+            'name' => $request->name,
+            'website' => $request->website,
+            'phone' => $request->phone));
+        }
+        // dd($request);
+        // return view('placement-coordinator.editCompanyProfile',['id' => $request->id ]));
+        return redirect()->route('placement-coordinator.editCompanySelect',['id' => $request->id ])->with('status', 'Profile Updated successfully.');
+    }
+
+
     public function companyFeedback()
     {   $cfeedback = Company_feedback::all();
         return view('placement-coordinator.companyFeedback')->with(['cfeedback'=>$cfeedback]);
