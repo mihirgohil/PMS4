@@ -22,6 +22,7 @@ class EditprofileController extends Controller
             'studentname' => $request->studentname,
             'phone'       => $request->phone,
             'stream'      => $request->stream
+            
         ]);
 
         session()->flash('success', 'Student profile updated successfully.');

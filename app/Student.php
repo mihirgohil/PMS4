@@ -60,4 +60,9 @@ class Student extends Authenticatable implements MustVerifyEmail
         $this->notify(new StudentVerifyEmail);
     }
 
+    public function getId()
+    {
+        return $this->id;
+    }
+
 }

@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Mail;
 
 use App\Placement_drive;
 use App\Company;
+use App\Student_feedback;
+use App\Company_feedback;
 use App\InternshipPc_Post;
 
 class HomeController extends Controller
@@ -161,8 +163,8 @@ class HomeController extends Controller
     }
 
     public function companyFeedback()
-    {
-        return view('placement-coordinator.companyFeedback');
+    {   $cfeedback = Company_feedback::all();
+        return view('placement-coordinator.companyFeedback')->with(['cfeedback'=>$cfeedback]);
     }
 
     //Student
@@ -177,8 +179,8 @@ class HomeController extends Controller
     }
 
     public function studentFeedback()
-    {
-        return view('placement-coordinator.studentFeedback');
+    {   $stufeedback = Student_feedback::all();
+        return view('placement-coordinator.studentFeedback')->with(['stufeedback'=>$stufeedback]);
     }
 
     //add new coordinator

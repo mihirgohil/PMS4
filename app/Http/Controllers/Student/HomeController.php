@@ -1,10 +1,15 @@
 <?php
 
 namespace App\Http\Controllers\Student;
-
+use App\Student;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Student\Auth\VerificationController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Auth;
 
+use App\Student_feedback;
+use App\Student_OptOut;
 
 class HomeController extends Controller
 {
@@ -44,12 +49,6 @@ class HomeController extends Controller
         return view('student.showprofile');
     }
 
-    //Student streams
-    public function streams()
-    {
-        return view('student.streams');
-    }
-
     //internship
     public function interndetails()
     {
@@ -68,10 +67,42 @@ class HomeController extends Controller
         return view('student.optout');
     }
 
+    public function optoutsave(Request $request){
+        $student_id = Auth::guard('student')->user()->getId();
+        $request->validate([
+            'title' => 'required',
+            'optout' => 'required|max:255',
+        ]);
+        $data = array(
+            'title' => $request->get('title'),
+            'optout' => $request->get('optout'),
+            'student_id'=> $student_id,
+      );
+    // dd($data);
+      Student_OptOut::create($data);
+      return redirect()->back()->with('status', 'Your OptOut form submit!..');
+    }
+
     //Student give feedback
     public function giveFeedback()
-    {
+    {   
         return view('student.giveFeedback');
+    }
+
+    public function feedbacksave(Request $request){
+        $student_id = Auth::guard('student')->user()->getId();
+        $request->validate([
+            'title' => 'required',
+            'details' => 'required|max:255',
+        ]);
+        $data = array(
+            'title' => $request->get('title'),
+            'details' => $request->get('details'),
+            'student_id'=> $student_id,
+      );
+    // dd($data);
+      Student_feedback::create($data);
+      return redirect()->back()->with('status', 'Feedback submit!..');
     }
 
 

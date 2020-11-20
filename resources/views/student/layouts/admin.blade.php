@@ -73,7 +73,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{ asset(Auth::guard('student')->user()->avatar) }} " class="img-circle elevation-2" style="width:50px; height:50px;position:relative; border-radius:50%" alt="">
+          <img src="{{ asset(Auth::guard('student')->user()->avatar) }} " class="img-circle elevation-2" style="width:45px; height:45px;position:relative; border-radius:50%" alt="">
         </div>
         <div class="info">
           <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -120,14 +120,6 @@
               <i class="nav-icon fas fa-check-circle"></i>
               <p>
                 Applied for Internship
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="{{ route('student.streams') }}" class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
-              <p>
-                Streams
               </p>
             </a>
           </li>

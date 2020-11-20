@@ -23,15 +23,23 @@ Route::group(['namespace' => 'Company'], function() {
     Route::get('email/verify','Auth\VerificationController@show')->name('company.verification.notice');
     Route::get('email/verify/{id}','Auth\VerificationController@verify')->name('company.verification.verify');
 
-    //Company homepage
+    //Profile
     Route::get('/profile', 'HomeController@profile')->name('company.profile');
+    Route::get('/profile/edit', 'HomeController@editprofile')->name('company.editprofile');
+    Route::post('/profile/update', 'HomeController@updateProfile')->name('company.updateprofile');
+    
+
     Route::get('/addCoordinator', 'HomeController@addNewCoShow')->name('company.addCoordinator');
     Route::post('/addCoordinator/store', 'HomeController@addNewCoordinatorStore')->name('company.addNewCoordinatorStore');
     
+    //Internship
     Route::get('/addpost', 'HomeController@addPost')->name('company.postInternship');
     Route::post('/addpost', 'HomeController@addPostSave')->name('company.addNewpost.store');
 
     Route::get('/workingInternship', 'HomeController@workingInternship')->name('company.workingInternship');
     Route::get('/history', 'HomeController@history')->name('company.history');
+
+    //feedback
     Route::get('/givefeedback', 'HomeController@giveFeedback')->name('company.giveFeedback');
+    Route::post('/feedback/save', 'HomeController@feedbackSave')->name('company.feedback.Save');
 });

@@ -67,6 +67,7 @@ class RegisterController extends Controller
             'stream' => 'required|max:255',
             'cpi' => 'required|numeric',
             'drive' => 'required',
+            
         ]);
     }
 
