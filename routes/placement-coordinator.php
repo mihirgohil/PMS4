@@ -50,6 +50,7 @@ Route::group(['namespace' => 'PlacementCoordinator'], function() {
 
     //internship
     Route::get('/internship', 'HomeController@pcinternship')->name('placement-coordinator.pcinternship');
- 
+    Route::post('/internship/save', 'HomeController@internshipSave')->name('placement-coordinator.addNewpost.Store');
+    Route::get('/managepublish', 'HomeController@manageinternship')->name('placement-coordinator.managePublish');
 
 });

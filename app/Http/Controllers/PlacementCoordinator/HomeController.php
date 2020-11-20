@@ -13,6 +13,8 @@ use App\Notifications\CoordinatorRegistrationNotification;
 use Illuminate\Support\Facades\Mail;
 
 use App\Placement_drive;
+use App\Company;
+use App\InternshipPc_Post;
 
 class HomeController extends Controller
 {
@@ -61,10 +63,56 @@ class HomeController extends Controller
       return redirect()->back();
   }
 
-    //internship
+
+
+    // internship
     public function pcinternship()
+    {    $drives = Placement_drive::where('is_completed',0)->get();
+         $company = Company::all();
+        return view('placement-coordinator.pcinternship')->with(['drive'=>$drives,'company'=>$company]);
+    }
+    
+    public function internshipSave(Request $request){
+       
+        $request->validate([
+            'co_details' => 'required',
+            'overview'=> 'required',
+            'duration'=> 'required',
+            'recruitment'=> 'required',
+            'position'=> 'required',
+            'modeofinterview'=> 'required',
+            'workinghours'=> 'required',
+            'ctc'=> 'required',
+            'bond'=> 'required',
+            'stipend'=> 'required',
+            'company'=>'required',
+            'drive' => 'required',
+        ]);
+        $data = array(
+            'co_details' => $request->get('co_details'),
+            'overview' => $request->get('overview'),
+            'duration' => $request->get('duration'),
+            'recruitment' => $request->get('recruitment'),
+            'position'=>$request->get('position'),
+            'modeofinterview'=> $request->get('modeofinterview'),
+            'workinghours'=> $request->get('workinghours'),
+            'ctc'=> $request->get('ctc'),
+            'bond'=> $request->get('bond'),
+            'stipend'=> $request->get('stipend'),
+            'is_posted'=> false,
+            'is_completed'=> false,
+            'company_id'=> $company,
+            'placement_drive_id'=> $drive,
+      );
+    dd($data);
+      InternshipPc_Post::create($data);
+      return redirect()->back()->with('status', 'Internship Post Created! Thank you.');
+    }
+
+
+    public function manageinternship()
     {
-        return view('placement-coordinator.pcinternship');
+        return view('placement-coordinator.managePublish');
     }
 
     //placement dirve

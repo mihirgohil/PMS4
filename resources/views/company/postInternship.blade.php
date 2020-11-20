@@ -32,7 +32,7 @@
                         </div>
                     @endif
                    
-                    <form method="POST" action="/addpost" aria-label="{{ __('Register') }}">
+                    <form method="POST" action="{{ route('company.addNewpost.store') }}" aria-label="{{ __('Register') }}">
                         @csrf
                        
                         @if(isset($status))

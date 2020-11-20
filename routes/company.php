@@ -29,7 +29,7 @@ Route::group(['namespace' => 'Company'], function() {
     Route::post('/addCoordinator/store', 'HomeController@addNewCoordinatorStore')->name('company.addNewCoordinatorStore');
     
     Route::get('/addpost', 'HomeController@addPost')->name('company.postInternship');
-    Route::post('/addpost', 'HomeController@addPostSave');
+    Route::post('/addpost', 'HomeController@addPostSave')->name('company.addNewpost.store');
 
     Route::get('/workingInternship', 'HomeController@workingInternship')->name('company.workingInternship');
     Route::get('/history', 'HomeController@history')->name('company.history');
