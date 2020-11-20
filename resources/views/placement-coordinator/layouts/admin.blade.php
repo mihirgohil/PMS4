@@ -72,6 +72,9 @@
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="{{ asset('images/user.png') }}" class="img-circle elevation-2" style="width:45px; height:45px;position:relative; border-radius:50%" alt="">
+        </div>
         <div class="info">
             <a  class="nav-link " href="#" role="button" data-toggle="dropdown" aria-haspopup="true"       aria-expanded="false" v-pre>
                 {{ Auth::guard('placement-coordinator')->user()->name }} <span class="caret"></span>

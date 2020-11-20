@@ -5,12 +5,14 @@ use App\Company;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\Company\UpdateProfileRequest;
 use Auth;
 
 use Notification;
 use Illuminate\Support\Facades\Mail;
 
 use App\Internship_Post;
+use App\Company_feedback;
 
 use App\Add_Company_Coordinator;
 
@@ -42,6 +44,25 @@ class HomeController extends Controller
     public function profile(){
         return view('company.profile');
     }
+
+    public function editProfile(){
+        return view('company.editprofile');
+    }
+
+    public function updateProfile(UpdateProfileRequest $request){
+        $user = Auth::guard('company')->user();
+
+      $user->update([
+          'name' => $request->name,
+          'website' => $request->website,
+          'phone' => $request->phone,
+      ]);
+
+      session()->flash('success', 'Profile updated successfully.');
+
+      return redirect()->back();
+    }
+
 
     //add coordinator
     public function addNewCoShow(){
@@ -113,5 +134,21 @@ class HomeController extends Controller
     //Company give feedback
     public function giveFeedback(){
         return view('company.giveFeedback');
+    }
+
+    public function feedbackSave(Request $request){
+        $company_id = Auth::guard('company')->user()->getId();
+        $request->validate([
+            'title' => 'required',
+            'details' => 'required|max:255',
+        ]);
+        $data = array(
+            'title' => $request->get('title'),
+            'details' => $request->get('details'),
+            'company_id'=> $company_id,
+      );
+    // dd($data);
+      Company_feedback::create($data);
+      return redirect()->back()->with('status', 'Feedback submit!..');
     }
 }

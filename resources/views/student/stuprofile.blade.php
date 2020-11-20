@@ -57,13 +57,6 @@
                                 <input id="stream" type="name"  class="form-control" name="stream" value="{{ Auth::guard('student')->user()->stream }}" readonly>
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label for="stream" class="col-md-4 col-form-label text-md-right">{{ __('Stream') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="stream" type="name"  class="form-control" name="stream" value="{{ Auth::guard('student')->user()->stream }}" readonly>
-                            </div>
-                        </div>
                             <br>
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">

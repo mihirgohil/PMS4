@@ -39,10 +39,16 @@ Route::group(['namespace' => 'Student'], function() {
     Route::get('/profile/showprofile','HomeController@showprofile')->name('student.showprofile');
     Route::get('/streams', 'HomeController@streams')->name('student.streams');
     Route::get('/appliedInternship', 'HomeController@appliedInternship')->name('student.appliedInternship');
+    
+    //OptOut
     Route::get('/optoutForm', 'HomeController@optout')->name('student.optout');
-    Route::get('/feedback', 'HomeController@giveFeedback')->name('student.giveFeedback');
+    Route::post('/optout/submit', 'HomeController@optoutsave')->name('student.optout.submit');
 
      //internship
      Route::get('/internship', 'HomeController@interndetails')->name('student.interndetails');
+
+     //feedback
+     Route::get('/feedback', 'HomeController@giveFeedback')->name('student.giveFeedback');
+     Route::post('/feedback/save', 'HomeController@feedbacksave')->name('student.feedback.save');
  
 });

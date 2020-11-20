@@ -48,7 +48,6 @@
                           <td> <a href="#" class="btn btn-primary">{{__('View Reports')}}</a> </td>
                         @else
                            <td> <button class="btn btn-danger" onclick="myFunction({{$data->id}})">{{__('Close Drive')}}</button> </td>
-                        
                         @endif
                     </tr>
                     @endforeach
