@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Mail;
 
 use App\Placement_drive;
 use App\Company;
+use App\Student;
 use App\Student_feedback;
 use App\Company_feedback;
 use App\InternshipPc_Post;
@@ -158,8 +159,8 @@ class HomeController extends Controller
     }
     
     public function manageCompany()
-    {
-        return view('placement-coordinator.manageCompany');
+    {   $company = Company::all();
+        return view('placement-coordinator.manageCompany')->with(['company'=>$company]);
     }
 
     public function companyFeedback()
@@ -174,8 +175,8 @@ class HomeController extends Controller
     }
     
     public function manageStudent()
-    {
-        return view('placement-coordinator.manageStudent');
+    {   $student = Student::all();
+        return view('placement-coordinator.manageStudent')->with(['student'=>$student]);
     }
 
     public function studentFeedback()
@@ -188,6 +189,7 @@ class HomeController extends Controller
     {
         return view('placement-coordinator.addNewCoordinator');
     }
+    
     //store new coordinator
     public function addNewCoordinatorStore(Request $request)
     {
