@@ -31,6 +31,8 @@ class CreateStudentsTable extends Migration
             $table->float('ug');
             $table->string('stream');
             $table->float('cpi');
+            $table->boolean('is_placed')->default(0);
+            $table->boolean('is_optout')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });
