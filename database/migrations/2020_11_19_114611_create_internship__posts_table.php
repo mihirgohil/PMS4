@@ -32,6 +32,7 @@ class CreateInternshipPostsTable extends Migration
             $table->unsignedInteger('placement_drive_id');
             $table->foreign('placement_drive_id')->references('id')->on('placement_drives');
             $table->timestamps(); 
+            
         });
     }
 
