@@ -134,6 +134,7 @@ class HomeController extends Controller
         return view('placement-coordinator.managePublish');
     }
 
+
     //placement dirve
     public function addPlacementDrive()
     {   $drives = Placement_drive::all();
@@ -306,10 +307,18 @@ class HomeController extends Controller
     }
 
 
-    public function manageStudent()
-    {   $student = Student::all();
+    public function manageStudentSelectDrive()
+    {   $drive = Placement_drive::all();
+        return view('placement-coordinator.manageStudentSelectDrive')->with(['drive'=>$drive]);
+    }
+
+    public function manageStudent(Request $request)
+    {   $id = $request->input('id');
+        $student = Student::where('placement_drive_id',$id)->get();
         return view('placement-coordinator.manageStudent')->with(['student'=>$student]);
     }
+
+
 
     public function studentFeedback()
     {   $stufeedback = Student_feedback::all();

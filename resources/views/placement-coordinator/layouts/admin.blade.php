@@ -187,7 +187,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('placement-coordinator.manageStudent') }}" class="nav-link">
+                <a href="{{ route('placement-coordinator.manageStudentDrive') }}" class="nav-link">
                   <i class="far fa-address-card nav-icon"></i>
                   <p>Manage Student</p>
                 </a>
