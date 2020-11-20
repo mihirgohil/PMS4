@@ -33,7 +33,7 @@
                   <td> <?php echo $i ?></td>
                   <td>{{$data->drive_name}}</td>
                   <td>{{$data->created_at}}</td>  
-                  <td> <a href={{ route('placement-coordinator.managePublish', ['id' => $data->id ]) }} class="btn btn-primary">{{__('Manage & Publish Internship Post ')}}</a> </td>
+                  <td> <a href="{{ route('placement-coordinator.managePublish', ['id' => $data->id ]) }}" class="btn btn-primary">{{__('Manage & Publish Internship Post ')}}</a> </td>
               </tr>
               @endforeach
             </tbody>

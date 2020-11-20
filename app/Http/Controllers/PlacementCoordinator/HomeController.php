@@ -134,11 +134,17 @@ class HomeController extends Controller
     }
     public function manageinternship(Request $request)
     {   $id = $request->input('id');
-        $posts = Internship_Post::where('placement_drive_id',$id)->get();
+        $posts = Internship_Post::where('placement_drive_id',$id)->where('is_posted',0)->get();
         // dd($posts);  
-        return view('placement-coordinator.managePublish',['posts'=>$posts]);
+        return view('placement-coordinator.managePublish',['posts'=>$posts,'id'=>$id]);
     }
-
+    
+    public function managepublished(Request $request)
+    {   $id = $request->input('id');
+        $posts = Internship_Post::where('placement_drive_id',$id)->where('is_posted',1)->get();
+        // dd($posts);  
+        return view('placement-coordinator.managePublished',['posts'=>$posts,'id'=>$id]);
+    }
 
     //placement dirve
     public function addPlacementDrive()

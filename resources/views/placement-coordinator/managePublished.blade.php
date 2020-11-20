@@ -9,7 +9,7 @@
             <h1 class="m-0 text-dark">Manage & Publish Internship</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
-            <a href="{{ route('placement-coordinator.managePublished', ['id' => $id ]) }}" class="btn btn-info">Published posts</a>
+            <a href="{{ route('placement-coordinator.managePublish', ['id' => $id ]) }}" class="btn btn-info">New And Unpublished posts</a>
           </div>
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -22,7 +22,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h4 class="m-0 text-dark">New & unpublished Internship Posts</h4>
+            <h4 class="m-0 text-dark">Already Published Internship Posts</h4>
           </div>
         </div> 
       @foreach($posts as $data)
