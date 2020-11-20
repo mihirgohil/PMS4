@@ -11,6 +11,7 @@ use Auth;
 use Notification;
 use App\Notifications\CoordinatorRegistrationNotification;
 use App\Notifications\CompanyRegistrationNotification;
+use App\Notifications\StudentRegistrationNotification;
 
 use Illuminate\Support\Facades\Mail;
 
@@ -224,6 +225,12 @@ class HomeController extends Controller
         return view('placement-coordinator.addStudent');
     }
     
+    public function sendNewStudentMessage(Request $request)
+    {
+        Notification::route('mail', $request->input('email'))->notify(new CompanyRegistrationNotification($request->input('password')));
+    }
+
+
     public function manageStudent()
     {   $student = Student::all();
         return view('placement-coordinator.manageStudent')->with(['student'=>$student]);
