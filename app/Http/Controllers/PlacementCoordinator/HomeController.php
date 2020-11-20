@@ -201,7 +201,7 @@ class HomeController extends Controller
         }
         $request->request->add(['password' => $password ]);
         $this->sendNewCompanyMessage($request);
-        return redirect()->back()->with('status', 'New Company Created Created successfully.');
+        return redirect()->back()->with('status', 'New Company Created successfully.');
     }
 
     public function sendNewCompanyMessage(Request $request)
@@ -221,13 +221,56 @@ class HomeController extends Controller
 
     //Student
     public function addStudent()
+    {   $drives = Placement_drive::where('is_completed', 0)->get();
+        return view('placement-coordinator.addStudent')->with(['drive'=>$drives]);
+    }
+
+    public function addStudentStore(Request $request)
     {
-        return view('placement-coordinator.addStudent');
+        $password =  $this->getPassword(6);
+        $request->validate([
+            'enrollment_no' => 'required|min:12|numeric|unique:students',
+            'studentname' => 'required|max:255',
+            'dob' => 'required|date',
+            'email' => 'required|email|max:255|unique:students',
+            'avatar' => 'required|image|mimes:jpg,jpeg,png,svg,bmp|max:5000',
+            'phone' => 'required|min:10|numeric',
+            'ssc' => 'required|numeric',
+            'hsc' => 'required|numeric',
+            'ug' => 'required|numeric',
+            'stream' => 'required|max:255',
+            'cpi' => 'required|numeric',
+            'drive' => 'required',   
+        ]);
+        if(request()->has('avatar')){
+            $avataruploaded = request()->file('avatar');
+            $avatarname = time().'.'.$avataruploaded->getClientOriginalExtension();
+            $avatarpath = public_path('/images/');
+            $avataruploaded->move($avatarpath, $avatarname);
+            Student::create([
+                'enrollment_no' => $request->get('enrollment_no'),
+                'studentname' => $request->get('studentname'),
+                'dob' => $request->get('dob'),
+                'email' => $request->get('email'),
+                'password' => bcrypt($password),
+                'avatar' => '/images/' . $avatarname,
+                'phone' => $request->get('phone'),
+                'ssc' => $request->get('ssc'),
+                'hsc' => $request->get('hsc'),
+                'ug' => $request->get('ug'),
+                'stream' => $request->get('stream'),
+                'cpi' => $request->get('cpi'),
+                'placement_drive_id'=> $request->get('drive'),
+            ]);
+        }
+        $request->request->add(['password' => $password ]);
+        $this->sendNewStudentMessage($request);
+        return redirect()->back()->with('status', 'New Student Created successfully.');
     }
     
     public function sendNewStudentMessage(Request $request)
     {
-        Notification::route('mail', $request->input('email'))->notify(new CompanyRegistrationNotification($request->input('password')));
+        Notification::route('mail', $request->input('email'))->notify(new StudentRegistrationNotification($request->input('password')));
     }
 
 
