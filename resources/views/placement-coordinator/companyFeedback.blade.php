@@ -16,35 +16,21 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-      <table class="table">
-                  <thead class="thead-dark">
-                  <!-- <tr>
-                      <td>
-                  <a href="#" class="btn btn-primary" ></a>
-                      </td>
-                  </tr> -->
-                    <tr>
-                      <th scope="col">Company id</th>
-                      <th scope="col">Title</th>
-                      <th scope="col">Details</th>
-                      <th scope="col">Created At</th>
-                      <th scope="col">Action</>
-                    </tr>
-                  </thead>
-                  <!-- <?php $i = 0 ?> -->
-                  <tbody>
-                   @foreach($cfeedback as $data)
-                    <tr>
-                        <!-- <?php $i += 1?>  -->
-                        <td>{{$data->company_id}}</td>
-                        <td>{{$data->title}}</td>
-                        <td>{{$data->details}}</td>
-                        <td>{{$data->created_at}}</td>  
-                           <td> <button class="btn btn-primary">Response</button></td>
-                    </tr>
-                    @endforeach
-                  </tbody>
-                </table>
+            <div class="row">
+              <div class="col-md-6">
+              @foreach($cfeedback as $data)
+                <div class="card">
+                  <div class="card-body">
+                    <h3 class="card-title">{{$data->id}}</h3>
+                    <h5 class="card-text">{{$data->title}}</h5>
+                    <h6 class="card-text">{{$data->details}}</h6>
+                    <small class="card-text">{{$data->created_at}}</small><br><br>
+                    <!-- <a href="#" class="btn btn-primary float-right">Response</a> -->
+                </div>
+              </div>
+            @endforeach
+              </div>
+            </div>
       </div>
     </section>
     <!-- /.content -->
