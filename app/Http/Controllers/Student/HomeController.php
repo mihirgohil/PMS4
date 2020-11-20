@@ -10,7 +10,7 @@ use Auth;
 
 use App\Student_feedback;
 use App\Student_OptOut;
-
+use App\Placement_drive;
 class HomeController extends Controller
 {
 
@@ -34,7 +34,14 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        
+       
+        $student_id = Auth::guard('student')->user()->getId();
+        $student = Student::find($student_id);
+        $drive = Placement_drive::find($student->placement_drive_id);
+        if($student->is_optout)
+        {  
+           return view('student.student_opt_out_home');
+        }
         return view('student.home');
     }
 
@@ -80,6 +87,7 @@ class HomeController extends Controller
       );
     // dd($data);
       Student_OptOut::create($data);
+      Student::where('id',$student_id)->update(['is_optout'=>1]);
       return redirect()->back()->with('status', 'Your OptOut form submit!..');
     }
 
