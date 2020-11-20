@@ -318,6 +318,51 @@ class HomeController extends Controller
         return view('placement-coordinator.manageStudent')->with(['student'=>$student]);
     }
 
+    public function editStudentSelect(Request $request)
+    {   $id = $request->input('id');
+        $student = Student::find($id);
+        $drives = Placement_drive::where('is_completed', 0)->get();
+        // dd($company);
+        return view('placement-coordinator.editStudentProfile')->with(['student'=>$student, 'drive'=>$drives]);
+    } 
+
+    public function editStudentSave(Request $request)
+    {
+        if(request()->has('avatar')){
+            $avataruploaded = request()->file('avatar');
+            $avatarname = time().'.'.$avataruploaded->getClientOriginalExtension();
+            $avatarpath = public_path('/images/');
+            $avataruploaded->move($avatarpath, $avatarname);
+            Student::where('id',$request->id)->update(array(
+            'avatar' => '/images/' . $avatarname,
+            'studentname' => $request->studentname,
+            'enrollment_no' => $request->enrollment_no,
+            'phone' => $request->phone,
+            'dob' => $request->dob,
+            'placement_drive_id'=> $request->get('drive'),
+            'ssc'=> $request->ssc,
+            'hsc' => $request->hsc,
+            'ug' => $request->ug,
+            'stream' => $request->stream,
+            'cpi' => $request->cpi));
+        }
+        else{
+            Student::where('id',$request->id)->update(array(
+                'studentname' => $request->studentname,
+                'enrollment_no' => $request->enrollment_no,
+                'phone' => $request->phone,
+                'dob' => $request->dob,
+                'placement_drive_id'=> $request->get('drive'),
+                'ssc'=> $request->ssc,
+                'hsc' => $request->hsc,
+                'ug' => $request->ug,
+                'stream' => $request->stream,
+                'cpi' => $request->cpi));
+        }
+        // dd($request);
+        // return view('placement-coordinator.editCompanyProfile',['id' => $request->id ]));
+        return redirect()->route('placement-coordinator.editStudentSelect',['id' => $request->id ])->with('status', 'Profile Updated successfully.');   
+    }
 
 
     public function studentFeedback()

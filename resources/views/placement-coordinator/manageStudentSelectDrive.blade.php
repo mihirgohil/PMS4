@@ -18,11 +18,6 @@
       <div class="container-fluid">
         <table class="table">
             <thead class="thead-dark">
-            <tr>
-                <td>
-            <a href="{{ route('placement-coordinator.addNewDrive') }}" class="btn btn-primary" >Add New Placement Drive</a>
-                </td>
-            </tr>
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">Drive Name</th>

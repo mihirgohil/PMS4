@@ -16,39 +16,30 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-      <table class="table">
-                  <thead class="thead-dark">
-                  <!-- <tr>
-                      <td>
-                  <a href="#" class="btn btn-primary" ></a>
-                      </td>
-                  </tr> -->
-                    <tr>
-                      <th scope="col">Enrollment No.</th>
-                      <th scope="col">Name</th>
-                      <th scope="col">Phone No</th>
-                      <th scope="col">Is Placed</th>
-                      <th scope="col">Is OptOut</th>
-                      <th scope="col">Created at</th>
-                      <th scope="col">Action</th>
-                    </tr>
-                  </thead>
-                  <!-- <?php $i = 0 ?> -->
-                  <tbody>
-                   @foreach($student as $data)
-                    <tr>
-                        <!-- <?php $i += 1?>  -->
-                        <td>{{$data->enrollment_no}}</td>
-                        <td>{{$data->studentname}}</td>
-                        <td>{{$data->phone}}</td>
-                        <td>{{$data->is_placed}}</td>
-                        <td>{{$data->is_optout}}</td>
-                        <td>{{$data->created_at}}</td>  
-                           <td><a href="#"><button class="btn btn-primary">Edit</button></a></td>
-                    </tr>
-                    @endforeach
-                  </tbody>
-                </table>
+        <div class="row"> 
+              @foreach($student as $data)
+                <div class="col-sm-4"> 
+                <div class="card" style="width: 18rem;">
+                  <img class="card-img-top" src="{{$data->avatar}}" alt="Card image cap">
+                  <div class="card-body">
+                    <h5 class="card-title">Student name : <br> {{$data->studentname}}</h5>
+                    <p class="card-text">{{$data->enrollment_no}}</a></p>
+                    <p class="card-text">{{$data->phone}}</p>
+                    <p class="card-text">{{$data->email}}</p>
+                    <p class="card-text">{{$data->dob}}</p>
+                    <p class="card-text">{{$data->drive}}</p>
+                    <p class="card-text">{{$data->ssc}}</p>
+                    <p class="card-text">{{$data->hsc}}</p>
+                    <p class="card-text">{{$data->ug}}</p>
+                    <p class="card-text">{{$data->stream}}</p>
+                    <p class="card-text">{{$data->cpi}}</p>
+                    <p class="card-text">{{$data->created_at}}</p>
+                    <a href="{{ route('placement-coordinator.editStudentSelect', ['id' => $data->id ]) }}" class="btn btn-primary">Edit</a>
+                  </div>
+                </div>
+                </div>
+                @endforeach
+          </div>
       </div>
     </section>
     <!-- /.content -->
