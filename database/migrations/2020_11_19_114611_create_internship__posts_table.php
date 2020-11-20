@@ -28,8 +28,10 @@ class CreateInternshipPostsTable extends Migration
             $table->boolean('is_posted');
             $table->boolean('is_completed');
             $table->unsignedInteger('company_id');
-            $table->foreign('company_id')->references('id')->on('companies');            
-            $table->timestamps();
+            $table->foreign('company_id')->references('id')->on('companies');
+            $table->unsignedInteger('placement_drive_id');
+            $table->foreign('placement_drive_id')->references('id')->on('placement_drives');
+            $table->timestamps(); 
         });
     }
 

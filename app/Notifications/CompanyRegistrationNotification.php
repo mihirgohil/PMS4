@@ -7,7 +7,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class CoordinatorRegistrationNotification extends Notification
+class CompanyRegistrationNotification extends Notification
 {
     use Queueable;
 
@@ -46,10 +46,10 @@ class CoordinatorRegistrationNotification extends Notification
     {
        
         return (new MailMessage())
-            ->subject("New Registration for Coordinator")
+            ->subject("New Registration for Cpi Placement")
             ->line("You are registered as an Placement Coordinator with this Email. Now you can login with these credentials.")
             ->line("Your password is - {$this->password}")
-            ->action("Login as PMS coordinator", route('placement-coordinator.login'))
+            ->action("Login in", route('company.login'))
             ->line("If you don't know about this, just ignore this email");
     }
 

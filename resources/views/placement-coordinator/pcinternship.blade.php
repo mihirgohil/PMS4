@@ -60,7 +60,7 @@
                             <label for="company" class="col-md-4 col-form-label text-md-right">{{ __('Select Company') }}</label>
                             <div class="col-md-6">
                                 <select id="company" class="form-control" name="company">           
-                                    <option value="">Select Company</option>
+                                    <option value="default_company">Select Company</option>
                                     @foreach($company as $cmp)
                                     <option value="{{ $cmp->id }}">{{$cmp->name}} </option>
                                     @endforeach
@@ -232,6 +232,13 @@ $("#frm").submit(function(event){
               alert("select Placement Drive");
               return false;
          }
+         var company = $("#company").val();
+         if(company=="default_company")
+         {
+              
+              alert("select Company");
+              return false;
+         }
          return true;
  }
 </script>
@@ -246,16 +253,6 @@ $("#frm").submit(function(event){
               alert("select Company");
          }
  });
- function validate(){
-    var company = $("#company").val();
-         if(company=="default_company")
-         {
-              
-              alert("select Company");
-              return false;
-         }
-         return true;
- }
 </script>
 
     <!-- /.content -->

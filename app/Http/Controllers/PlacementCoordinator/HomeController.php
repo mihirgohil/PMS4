@@ -10,6 +10,8 @@ use Auth;
 
 use Notification;
 use App\Notifications\CoordinatorRegistrationNotification;
+use App\Notifications\CompanyRegistrationNotification;
+
 use Illuminate\Support\Facades\Mail;
 
 use App\Placement_drive;
@@ -20,6 +22,19 @@ class HomeController extends Controller
 {
 
     protected $redirectTo = '/placement-coordinator/login';
+
+    public function getPassword($n) { 
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'; 
+        $randomString = ''; 
+      
+        for ($i = 0; $i < $n; $i++) { 
+            $index = rand(0, strlen($characters) - 1); 
+            $randomString .= $characters[$index]; 
+        } 
+      
+        return $randomString; 
+    } 
+      
 
     /**
      * Create a new controller instance.
@@ -101,11 +116,11 @@ class HomeController extends Controller
             'stipend'=> $request->get('stipend'),
             'is_posted'=> false,
             'is_completed'=> false,
-            'company_id'=> $company,
-            'placement_drive_id'=> $drive,
+            'company_id'=> $request->get('company'),
+            'placement_drive_id'=> $request->get('drive'),
       );
-    dd($data);
-      InternshipPc_Post::create($data);
+    // dd($data);
+      Internship_Post::create($data);
       return redirect()->back()->with('status', 'Internship Post Created! Thank you.');
     }
 
@@ -154,7 +169,42 @@ class HomeController extends Controller
     {
         return view('placement-coordinator.addCompany');
     }
-    
+    public function addCompanyStore(Request $request)
+    {   
+        $password =  $this->getPassword(6);
+        $request->validate([
+            'name' => 'required|max:255',
+            'address' => 'required|max:255',
+            'website' => 'required|url',
+            'email' => 'required|email|max:255|unique:companies',
+            'avatar' => 'required|image|mimes:jpg,jpeg,png,svg,bmp|max:5000',
+            'phone' => 'required|min:10|numeric',
+        ]);
+        if(request()->has('avatar')){
+            $avataruploaded = request()->file('avatar');
+            $avatarname = time().'.'.$avataruploaded->getClientOriginalExtension();
+            $avatarpath = public_path('/images/');
+            $avataruploaded->move($avatarpath, $avatarname);
+            Company::create([
+                'name' => $request->get('name'),
+                'address' => $request->get('address'),
+                'website' => $request->get('website'),
+                'email' => $request->get('email'),
+                'password' => bcrypt($password),
+                'avatar' => '/images/' . $avatarname,
+                'phone' => $request->get('phone'),
+            ]);
+        }
+        $request->request->add(['password' => $password ]);
+        $this->sendNewCompanyMessage($request);
+        return redirect()->back()->with('status', 'New Company Created Created successfully.');
+    }
+
+    public function sendNewCompanyMessage(Request $request)
+    {
+        Notification::route('mail', $request->input('email'))->notify(new CompanyRegistrationNotification($request->input('password')));
+    }
+
     public function manageCompany()
     {
         return view('placement-coordinator.manageCompany');
@@ -188,17 +238,17 @@ class HomeController extends Controller
     }
     //store new coordinator
     public function addNewCoordinatorStore(Request $request)
-    {
+    {     $password =  $this->getPassword(6);
         $request->validate(['name' => 'required|max:255',
-        'email' => 'required|email|max:255|unique:placement_coordinators',
-        'password' => 'required|min:6|confirmed']);
+        'email' => 'required|email|max:255|unique:placement_coordinators']);
         $data = array(
             'name' => $request->get('name'),
             'email' => $request->get('email'),
-            'password' => bcrypt($request->get('password')),
+            'password' => bcrypt($password),
         );
 
         PlacementCoordinator::create($data);
+        $request->request->add(['password' => $password ]);
         $this->sendNewCoMessage($request);
         return redirect()->back()->with('status', 'New Coordinator Acccount Created successfully.');
         

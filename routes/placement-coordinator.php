@@ -40,6 +40,8 @@ Route::group(['namespace' => 'PlacementCoordinator'], function() {
     
     //company
     Route::get('/addCompany', 'HomeController@addCompany')->name('placement-coordinator.addCompany');
+    Route::post('/addCompany', 'HomeController@addCompanyStore')->name('placement-coordinator.addCompanyStore');
+
     Route::get('/manageCompany', 'HomeController@manageCompany')->name('placement-coordinator.manageCompany');
     Route::get('/companyFeedback', 'HomeController@companyFeedback')->name('placement-coordinator.companyFeedback');
    
