@@ -10,4 +10,8 @@ class Company_feedback extends Model
         'title','details','company_id',
     ];
 
+    public function company()
+    {
+        return $this->belongsTo('App\Company');
+    }
 }

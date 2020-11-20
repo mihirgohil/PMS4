@@ -21,7 +21,7 @@
               @foreach($stufeedback as $data)
                 <div class="card">
                   <div class="card-body">
-                    <h3 class="card-title">{{$data->id}}</h3>
+                    <h3 class="card-title">{{$data->student->id}}.. {{$data->student->studentname}}</h3>
                     <h5 class="card-text">{{$data->title}}</h5>
                     <h6 class="card-text">{{$data->details}}</h6>
                     <small class="card-text">{{$data->created_at}}</small><br><br>

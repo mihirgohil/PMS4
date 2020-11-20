@@ -23,7 +23,7 @@
         <div class="col-md-8">
             <div class="card">
             <div class="card-body">
-                <div class="card-header">{{ __('Add New Student') }}</div>
+                <div class="card-header">{{ __('Edit Student') }}</div>
 
                 <div class="card-body">
                       @if (session('status'))

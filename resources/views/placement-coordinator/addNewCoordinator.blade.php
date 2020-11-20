@@ -3,7 +3,7 @@
 @section('main_content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-8" style="margin:60px;">
             <div class="card">
                 
                 <div class="card-header" style="text-align:center">Add New Placement Coordinator</div>

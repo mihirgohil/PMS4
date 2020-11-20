@@ -10,4 +10,9 @@ class Student_feedback extends Model
         'title','details','student_id',
     ];
 
+    public function student()
+    {
+        return $this->belongsTo('App\Student');
+    }
 }
+
