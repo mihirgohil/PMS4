@@ -19,7 +19,7 @@ use App\Company;
 use App\Student;
 use App\Student_feedback;
 use App\Company_feedback;
-use App\InternshipPc_Post;
+use App\Internship_Post;
 
 class HomeController extends Controller
 {

@@ -214,16 +214,16 @@
     </section>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-$("#frm").submit(function(event){
- // var valDDL = $(this).val();
-        //event.preventDefault();
-         var drive = $("#drive").val();
-         if(drive=="default_drive")
-         {
-              event.preventDefault();
-              alert("select Placement Drive");
-         }
- });
+// $("#frm").submit(function(event){
+//  // var valDDL = $(this).val();
+//         //event.preventDefault();
+//          var drive = $("#drive").val();
+//          if(drive=="default_drive")
+//          {
+//               event.preventDefault();
+//               alert("select Placement Drive");
+//          }
+//  });
  function validate(){
     var drive = $("#drive").val();
          if(drive=="default_drive")
