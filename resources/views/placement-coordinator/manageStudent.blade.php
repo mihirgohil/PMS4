@@ -1,13 +1,26 @@
 @extends('placement-coordinator.layouts.admin')   
 
 @section('main_content')
+<link href="{{ asset('css/bootstrapcard.css') }}" rel="stylesheet">
 <!-- Content Header (Page header) -->
 <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Manage Student</h1>
+          <h2 class="m-0 text-dark">Manage All Student of Placement Drive : {{ $drive->drive_name }}</h2>
           </div><!-- /.col -->
+          <div class="col-sm-2">
+            <a href="#" class="btn btn-success">Student Placed</a>
+          </div>
+          <div class="col-sm-2">
+            <a href="#" class="btn btn-warning">Student Unplaced</a>
+          </div>
+          <div class="col-sm-2">
+            <a href="#" class="btn btn-primary">Student OptOut</a>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+        <div class="row mb-2">
+         
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
 </div>
@@ -27,7 +40,6 @@
                     <p class="card-text">Phone No.: {{$data->phone}}</p>
                     <p class="card-text">Email : {{$data->email}}</p>
                     <p class="card-text">Date Of Birth : {{$data->dob}}</p>
-                    <!-- <p class="card-text">Placement Drive : {{$data->drive}}</p> -->
                     <p class="card-text">S.S.C(%) : {{$data->ssc}}</p>
                     <p class="card-text">H.S.C(%) : {{$data->hsc}}</p>
                     <p class="card-text">U.G(%) : {{$data->ug}}</p>

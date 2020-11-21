@@ -326,8 +326,9 @@ class HomeController extends Controller
 
     public function manageStudent(Request $request)
     {   $id = $request->input('id');
-        $student = Student::where('placement_drive_id',$id)->get();
-        return view('placement-coordinator.manageStudent')->with(['student'=>$student]);
+        $student = Student::where('placement_drive_id',$id)->orderBy('enrollment_no')->get();
+        $drive = Placement_drive::find($id);
+        return view('placement-coordinator.manageStudent')->with(['student'=>$student,'drive'=>$drive,'drive_id'=>$id]);
     }
 
     public function editStudentSelect(Request $request)

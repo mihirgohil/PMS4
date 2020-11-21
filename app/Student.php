@@ -65,4 +65,9 @@ class Student extends Authenticatable implements MustVerifyEmail
         return $this->id;
     }
 
+    public function drive()
+    {
+        return $this->hasOne('App\Placement_drive');
+    }
+
 }
