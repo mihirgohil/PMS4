@@ -38,10 +38,10 @@ class HomeController extends Controller
         $student_id = Auth::guard('student')->user()->getId();
         $student = Student::find($student_id);
         $drive = Placement_drive::find($student->placement_drive_id);
-        if($student->is_optout)
-        {  
-           return view('student.student_opt_out_home');
-        }
+        // if($student->is_optout)
+        // {  
+        //    return view('student.student_opt_out_home');
+        // }
         return view('student.home');
     }
 

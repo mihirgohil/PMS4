@@ -7,14 +7,15 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-          <h2 class="m-0 text-dark">Manage All Student of Placement Drive : {{ $drive->drive_name }}</h2>
+          <h2 class="m-0 text-dark">Unplaced Student of Placement Drive : {{ $drive->drive_name }}</h2>
           </div><!-- /.col -->
+          <div class="col-sm-2">
+            <a href="{{ route('placement-coordinator.manageStudent', ['id' => $drive_id ]) }}" class="btn btn-primary">All Students</a>
+          </div>
           <div class="col-sm-2">
             <a href="#" class="btn btn-success">Student Placed</a>
           </div>
-          <div class="col-sm-2">
-            <a href="{{ route('placement-coordinator.unplacedStudent', ['id' => $drive_id ]) }}" class="btn btn-warning">Student Unplaced</a>
-          </div>
+          
           <div class="col-sm-2">
             <a href="#" class="btn btn-primary">Student OptOut</a>
           </div><!-- /.col -->

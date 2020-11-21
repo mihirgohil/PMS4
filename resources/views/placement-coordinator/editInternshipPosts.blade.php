@@ -26,13 +26,14 @@
               <!-- /.card-header -->
               <!-- form start -->
             <div class="card-body">
+                    
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
+                            {{ session('status') }}<a href="{{ route('placement-coordinator.managePublish', ['id' => $post->placement_drive_id ]) }}">{{__('Go to Manage & Publish Internship Post ')}}</a>
                         </div>
                     @endif
                    
-                    <form method="POST"  id="frm"  name="frm"  action="{{ route('placement-coordinator.addNewpost.Store') }}" aria-label="{{ __('Register') }}" >
+                    <form method="POST"  id="frm"  name="frm"  action="{{ route('placement-coordinator.editInternshipSave') }}" aria-label="{{ __('Register') }}" >
                         @csrf
                        
                         @if(isset($status))
@@ -41,7 +42,7 @@
                         </div>
                         @endisset
                     
-
+                        <input id="internship_id" name="internship_id" type="hidden" value="{{ $post->id }}" >
                         <div class="form-group row">
                             <label for="co_details" class="col-md-4 col-form-label text-md-right">{{ __('Coordinator Details') }}</label>
 

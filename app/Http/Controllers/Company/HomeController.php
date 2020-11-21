@@ -124,7 +124,7 @@ class HomeController extends Controller
             'stipend'=> $request->get('stipend'),
             'is_posted'=> false,
             'is_completed'=> false,
-            'is_active_registration'=>false,
+            'is_active_registration'=>true,
             'company_id'=> $company_id,
             'placement_drive_id'=>$request->get('drive'),
       );

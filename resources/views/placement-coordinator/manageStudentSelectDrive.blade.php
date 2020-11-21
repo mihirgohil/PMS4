@@ -39,7 +39,7 @@
                   @else
                      <td> {{__('Currently Active')}}</a> </td>
                   @endif
-                  <td> <a href={{ route('placement-coordinator.manageStudent', ['id' => $data->id ]) }} class="btn btn-primary">{{__('View Students')}}</a> </td>
+                  <td> <a href="{{ route('placement-coordinator.manageStudent', ['id' => $data->id ]) }}" class="btn btn-primary">{{__('View Students')}}</a> </td>
               </tr>
               @endforeach
             </tbody>

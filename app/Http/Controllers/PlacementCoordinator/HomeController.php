@@ -120,7 +120,7 @@ class HomeController extends Controller
             'stipend'=> $request->get('stipend'),
             'is_posted'=> false,
             'is_completed'=> false,
-            'is_active_registration'=>false,
+            'is_active_registration'=>true,
             'company_id'=> $request->get('company'),
             'placement_drive_id'=> $request->get('drive'),
       );
@@ -135,14 +135,14 @@ class HomeController extends Controller
     }
     public function manageinternship(Request $request)
     {   $id = $request->input('id');
-        $posts = Internship_Post::where('placement_drive_id',$id)->where('is_posted',0)->get();
+        $posts = Internship_Post::where('placement_drive_id',$id)->where('is_posted',0)->where('is_completed',0)->get();
         // dd($posts);  
         return view('placement-coordinator.managePublish',['posts'=>$posts,'id'=>$id]);
     }
     
     public function managepublished(Request $request)
     {   $id = $request->input('id');
-        $posts = Internship_Post::where('placement_drive_id',$id)->where('is_posted',1)->get();
+        $posts = Internship_Post::where('placement_drive_id',$id)->where('is_posted',1)->where('is_completed',0)->get();
         // dd($posts);  
         return view('placement-coordinator.managePublished',['posts'=>$posts,'id'=>$id]);
     }
@@ -152,6 +152,40 @@ class HomeController extends Controller
         $id = $request->input('id');
         $post = Internship_Post::find($id);
         return view('placement-coordinator.editInternshipPosts',['post'=>$post]);
+    }
+
+    public function publishInternshipPost(Request $request)
+    {
+        $id = $request->input('id');
+        Internship_Post::where('id',$id)->update(['is_posted' => 1]);
+        return redirect()->back()->with('status', 'Internship Post Published to Students.');
+    }
+
+    
+    public function ViewClosedInternshipPost(Request $request)
+    {   $id = $request->input('id');
+        $posts = Internship_Post::where('placement_drive_id',$id)->where('is_posted',1)->where('is_completed',1)->get();
+        // dd($posts);  
+        return view('placement-coordinator.closedInternshipPosts',['posts'=>$posts,'id'=>$id]);
+    }
+    
+    public function editInternshipPostSave(Request $request)
+    {   $data = array(
+        'co_details' => $request->get('co_details'),
+        'overview' => $request->get('overview'),
+        'duration' => $request->get('duration'),
+        'recruitment' => $request->get('recruitment'),
+        'position'=>$request->get('position'),
+        'modeofinterview'=> $request->get('modeofinterview'),
+        'workinghours'=> $request->get('workinghours'),
+        'ctc'=> $request->get('ctc'),
+        'bond'=> $request->get('bond'),
+        'stipend'=> $request->get('stipend'),
+        
+        );
+        // dd($request->get('internship_id'));
+        Internship_Post::where('id',$request->get('internship_id'))->update($data);
+        return redirect()->back()->with('status', 'New Company Created successfully.',['id']);
     }
 
     //placement dirve
@@ -331,11 +365,19 @@ class HomeController extends Controller
         return view('placement-coordinator.manageStudentSelectDrive')->with(['drive'=>$drive]);
     }
 
+// manage students
     public function manageStudent(Request $request)
     {   $id = $request->input('id');
         $student = Student::where('placement_drive_id',$id)->orderBy('enrollment_no')->get();
         $drive = Placement_drive::find($id);
         return view('placement-coordinator.manageStudent')->with(['student'=>$student,'drive'=>$drive,'drive_id'=>$id]);
+    }
+
+    public function unplacedStudent(Request $request)
+    {   $id = $request->input('id');
+        $student = Student::where('placement_drive_id',$id)->where('is_placed',0)->orderBy('enrollment_no')->get();
+        $drive = Placement_drive::find($id);
+        return view('placement-coordinator.unplacedStudent')->with(['student'=>$student,'drive'=>$drive,'drive_id'=>$id]);
     }
 
     public function editStudentSelect(Request $request)
@@ -411,6 +453,7 @@ class HomeController extends Controller
         return redirect()->back()->with('status', 'New Coordinator Acccount Created successfully.');
         
     }
+    
     //sending new registration mail
     public function sendNewCoMessage(Request $request)
     {   //dd($request->input('email'));

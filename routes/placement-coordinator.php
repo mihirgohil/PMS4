@@ -56,6 +56,8 @@ Route::group(['namespace' => 'PlacementCoordinator'], function() {
     Route::get('/manageStudentSelectDrive', 'HomeController@manageStudentSelectDrive')->name('placement-coordinator.manageStudentDrive');
     Route::get('/manageStudent', 'HomeController@manageStudent')->name('placement-coordinator.manageStudent');  
 
+    Route::get('/unplacedStudent','HomeController@unplacedStudent')->name('placement-coordinator.unplacedStudent'); 
+
     Route::get('/editStudentSelect', 'HomeController@editStudentSelect')->name('placement-coordinator.editStudentSelect');
     Route::post('/editStudentSave', 'HomeController@editStudentSave')->name('placement-coordinator.editStudentSave');
     
@@ -71,4 +73,7 @@ Route::group(['namespace' => 'PlacementCoordinator'], function() {
     
     Route::get('/editInternshipPost','HomeController@editInternshipPost')->name('placement-coordinator.editInternship');
     Route::post('/editInternshipPostSave','HomeController@editInternshipPostSave')->name('placement-coordinator.editInternshipSave');
+
+    Route::get('/InternshipPostPublish','HomeController@publishInternshipPost')->name('placement-coordinator.publishInternship');
+    Route::get('/InternshipPostClosed','HomeController@ViewClosedInternshipPost')->name('placement-coordinator.ViewClosedInternshipPost');
 });

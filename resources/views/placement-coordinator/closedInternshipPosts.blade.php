@@ -10,7 +10,8 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <a href="{{ route('placement-coordinator.managePublished', ['id' => $id ]) }}" class="btn btn-success">Published posts</a>
-            <a href="{{ route('placement-coordinator.ViewClosedInternshipPost', ['id' => $id ]) }}" class="btn btn-outline-danger">Closed Published Posted</a>
+            <a href="{{ route('placement-coordinator.managePublish', ['id' => $id ]) }}" class="btn btn-info">New And Unpublished posts</a>
+            
           </div>
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -29,6 +30,7 @@
                 {{ session('status') }}
             </div>
             @endif
+            
           </div>
         </div> 
         
@@ -38,11 +40,9 @@
         <div class="card-header">
           <img src="{{ $data->company->avatar }}" class="img-circle elevation-2" style="width:50px; height:50px;position:relative; border-radius:50%" alt="">
           {{ $data->company->name }}
-          <div class="col-md-2 float-right">
-            <a href="{{ route('placement-coordinator.editInternship', ['id' => $id ]) }}" class="btn btn-primary">Edit</a>
-            <a href="{{ route('placement-coordinator.publishInternship', ['id' => $id ]) }}" class="btn btn-outline-success">Publish</a>
+          <div class="col-md-4 float-right">
+            <a href="#" class="btn btn-info">Show Applied & Selected Students List</a>
           </div>
-         
         </div>
         <div class="card-body">
         <h5 class="card-title"><strong>Contact Person : </strong><br> {{$data->co_details}}</h5>

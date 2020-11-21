@@ -43,7 +43,7 @@
                     
 
                         <div class="form-group row">
-                            <label for="co_details" class="col-md-4 col-form-label text-md-right">{{ __('Coordinator Details') }}</label>
+                            <label for="co_details" class="col-md-4 col-form-label text-md-right">{{ __('Company Contact Person Details') }}</label>
 
                             <div class="col-md-6">
                                 <textarea rows="5" cols="5" id="drive_name" type="text" class="form-control{{ $errors->has('co_details') ? ' is-invalid' : '' }}" placeholder="Person's Name,Phone,Email,Designation" name="co_details" value="{{ old('co_details') }}" required></textarea>
