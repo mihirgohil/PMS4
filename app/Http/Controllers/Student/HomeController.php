@@ -47,7 +47,7 @@ class HomeController extends Controller
 
     //Student Profile
     public function stuprofile()
-    {
+    {   
         return view('student.stuprofile');
     }
 
