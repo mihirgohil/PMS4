@@ -5,6 +5,7 @@ namespace App\Http\Requests\Student;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
 use App\Http\Requests\Student;
+use Image;
 
 class UpdateProfileRequest extends FormRequest
 {
@@ -23,12 +24,21 @@ class UpdateProfileRequest extends FormRequest
      *
      * @return array
      */
+
     public function rules()
     {
         return [
+            'enrollment_no' => 'required',
             'studentname' => 'required',
+            'dob' => 'required',
+            'email' => 'required',
             'phone' => 'required',
-            'stream' => 'required'
+            'ssc' => 'required',
+            'hsc' => 'required',
+            'ug' => 'required',
+            'stream' => 'required',
+            'cpi' => 'required',
         ];
     }
 }
+
