@@ -380,6 +380,21 @@ class HomeController extends Controller
         return view('placement-coordinator.unplacedStudent')->with(['student'=>$student,'drive'=>$drive,'drive_id'=>$id]);
     }
 
+    public function placedStudent(Request $request)
+    {   $id = $request->input('id');
+        $student = Student::where('placement_drive_id',$id)->where('is_placed',1)->orderBy('enrollment_no')->get();
+        $drive = Placement_drive::find($id);
+        return view('placement-coordinator.placedStudent')->with(['student'=>$student,'drive'=>$drive,'drive_id'=>$id]);
+    }
+
+    public function optoutStudent(Request $request)
+    {   $id = $request->input('id');
+        $student = Student::where('placement_drive_id',$id)->where('is_optout',1)->orderBy('enrollment_no')->get();
+        $drive = Placement_drive::find($id);
+        return view('placement-coordinator.optoutStudent')->with(['student'=>$student,'drive'=>$drive,'drive_id'=>$id]);
+    }
+    
+
     public function editStudentSelect(Request $request)
     {   $id = $request->input('id');
         $student = Student::find($id);

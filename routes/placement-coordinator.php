@@ -56,7 +56,9 @@ Route::group(['namespace' => 'PlacementCoordinator'], function() {
     Route::get('/manageStudentSelectDrive', 'HomeController@manageStudentSelectDrive')->name('placement-coordinator.manageStudentDrive');
     Route::get('/manageStudent', 'HomeController@manageStudent')->name('placement-coordinator.manageStudent');  
 
-    Route::get('/unplacedStudent','HomeController@unplacedStudent')->name('placement-coordinator.unplacedStudent'); 
+    Route::get('/unplacedStudent','HomeController@unplacedStudent')->name('placement-coordinator.unplacedStudent');
+    Route::get('/placedStudent','HomeController@placedStudent')->name('placement-coordinator.placedStudent');
+    Route::get('/optoutStudent','HomeController@optoutStudent')->name('placement-coordinator.optoutStudent'); 
 
     Route::get('/editStudentSelect', 'HomeController@editStudentSelect')->name('placement-coordinator.editStudentSelect');
     Route::post('/editStudentSave', 'HomeController@editStudentSave')->name('placement-coordinator.editStudentSave');

@@ -10,13 +10,13 @@
           <h2 class="m-0 text-dark">Manage All Student of Placement Drive : {{ $drive->drive_name }}</h2>
           </div><!-- /.col -->
           <div class="col-sm-2">
-            <a href="#" class="btn btn-success">Student Placed</a>
+            <a href="{{ route('placement-coordinator.placedStudent', ['id' => $drive_id ]) }}" class="btn btn-success">Student Placed</a>
           </div>
           <div class="col-sm-2">
             <a href="{{ route('placement-coordinator.unplacedStudent', ['id' => $drive_id ]) }}" class="btn btn-warning">Student Unplaced</a>
           </div>
           <div class="col-sm-2">
-            <a href="#" class="btn btn-primary">Student OptOut</a>
+            <a href="{{ route('placement-coordinator.optoutStudent', ['id' => $drive_id ]) }}" class="btn btn-primary">Student OptOut</a>
           </div><!-- /.col -->
         </div><!-- /.row -->
         <div class="row mb-2">
