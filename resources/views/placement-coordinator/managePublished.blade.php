@@ -9,7 +9,7 @@
             <h1 class="m-0 text-dark">Manage & Publish Internship</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
-            <a href="{{ route('placement-coordinator.managePublished', ['id' => $id ]) }}" class="btn btn-info">Published posts</a>
+            <a href="{{ route('placement-coordinator.managePublish', ['id' => $id ]) }}" class="btn btn-info">New And Unpublished posts</a>
           </div>
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -22,7 +22,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h4 class="m-0 text-dark">New & unpublished Internship Posts</h4>
+            <h4 class="m-0 text-dark">Already Published Internship Posts</h4>
           </div>
         </div> 
       @foreach($posts as $data)
@@ -32,17 +32,10 @@
           {{ $data->company->name }}
         </div>
         <div class="card-body">
-        <h5 class="card-title">Contact Person : <br> {{$data->co_details}}</h5> <br><br>
-          <p class="card-text">Company Overview : {{ $data->overview }}</p>
-          <p class="card-text">Internship Duration : {{ $data->duration }}</p>
-          <p class="card-text">Recruitment Process : {{ $data->recruitment }}</p>
-          <p class="card-text">No. of Position(Technologies wise) : {{ $data->position }}</p>
-          <p class="card-text">Mode Of Interview : {{ $data->modeofinterview }}</p>
-          <p class="card-text">Working Hours : {{ $data->workinghours }}</p>
-          <p class="card-text">Stipend : {{ $data->stipend }}</p>
-          <p class="card-text">CTC : {{ $data->ctc }}</p>
-          <p class="card-text">Bond Details : {{ $data->bond }}</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+        <h5 class="card-title">Contact Person : <br> {{ $data->co_details }}</h5>
+          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <a href="#" class="btn btn-primary">Edit</a>
+          <a href="#" class="btn btn-success">Publish</a>
         </div>
       </div>
       @endforeach
