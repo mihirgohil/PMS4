@@ -31,6 +31,11 @@
         <div class="card-header">
           <img src="{{ $data->company->avatar }}" class="img-circle elevation-2" style="width:50px; height:50px;position:relative; border-radius:50%" alt="">
           {{ $data->company->name }}
+          <div class="col-md-2 float-right">
+            <a href="{{ route('placement-coordinator.editInternship', ['id' => $id ]) }}" class="btn btn-primary">Edit</a>
+            <a href="#" class="btn btn-outline-success">Publish</a>
+          </div>
+         
         </div>
         <div class="card-body">
         <h5 class="card-title">Contact Person : <br> {{$data->co_details}}</h5>
@@ -43,7 +48,7 @@
           <p class="card-text">Stipend : {{ $data->stipend }}</p>
           <p class="card-text">CTC : {{ $data->ctc }}</p>
           <p class="card-text">Bond Details : {{ $data->bond }}</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+          
         </div>
       </div>
       @endforeach

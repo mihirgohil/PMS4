@@ -68,5 +68,7 @@ Route::group(['namespace' => 'PlacementCoordinator'], function() {
     Route::get('/managepublishSelectDrive', 'HomeController@managePublishSelectDrive')->name('placement-coordinator.managePublishSelectDrive');
     Route::get('/managepublish', 'HomeController@manageinternship')->name('placement-coordinator.managePublish');
     Route::get('/managepublished','HomeController@managepublished')->name('placement-coordinator.managePublished');
-
+    
+    Route::get('/editInternshipPost','HomeController@editInternshipPost')->name('placement-coordinator.editInternship');
+    Route::post('/editInternshipPostSave','HomeController@editInternshipPostSave')->name('placement-coordinator.editInternshipSave');
 });

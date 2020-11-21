@@ -147,6 +147,13 @@ class HomeController extends Controller
         return view('placement-coordinator.managePublished',['posts'=>$posts,'id'=>$id]);
     }
 
+    public function editInternshipPost(Request $request)
+    {
+        $id = $request->input('id');
+        $post = Internship_Post::find($id);
+        return view('placement-coordinator.editInternshipPosts',['post'=>$post]);
+    }
+
     //placement dirve
     public function addPlacementDrive()
     {   $drives = Placement_drive::all();
@@ -352,7 +359,6 @@ class HomeController extends Controller
             'enrollment_no' => $request->enrollment_no,
             'phone' => $request->phone,
             'dob' => $request->dob,
-            'placement_drive_id'=> $request->get('drive'),
             'ssc'=> $request->ssc,
             'hsc' => $request->hsc,
             'ug' => $request->ug,
@@ -365,7 +371,6 @@ class HomeController extends Controller
                 'enrollment_no' => $request->enrollment_no,
                 'phone' => $request->phone,
                 'dob' => $request->dob,
-                'placement_drive_id'=> $request->get('drive'),
                 'ssc'=> $request->ssc,
                 'hsc' => $request->hsc,
                 'ug' => $request->ug,
