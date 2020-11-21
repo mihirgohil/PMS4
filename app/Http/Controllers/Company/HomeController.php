@@ -92,7 +92,7 @@ class HomeController extends Controller
 
     //Company add post
     public function addPost(){
-        $drives = Placement_drive::all();
+        $drives = Placement_drive::where('is_completed',0)->get();
         return view('company.postInternship')->with(['drive'=>$drives]);
     }
 
@@ -124,6 +124,7 @@ class HomeController extends Controller
             'stipend'=> $request->get('stipend'),
             'is_posted'=> false,
             'is_completed'=> false,
+            'is_active_registration'=>false,
             'company_id'=> $company_id,
             'placement_drive_id'=>$request->get('drive'),
       );
@@ -135,7 +136,8 @@ class HomeController extends Controller
 
     //Company working internship
     public function workingInternship(){
-        return view('company.workingInternship');
+        $posts = Internship_Post::where('is_completed',0)->get();
+        return view('company.workingInternship',['posts'=>$posts]);
     }
 
     //Company history

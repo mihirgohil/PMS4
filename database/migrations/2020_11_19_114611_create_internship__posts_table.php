@@ -15,10 +15,10 @@ class CreateInternshipPostsTable extends Migration
     {
         Schema::create('internship__posts', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('co_details');
-            $table->string('overview');
+            $table->longText('co_details');
+            $table->longText('overview');
             $table->string('duration');
-            $table->string('recruitment');
+            $table->longText('recruitment');
             $table->string('position');
             $table->string('modeofinterview');
             $table->string('workinghours');
@@ -27,13 +27,15 @@ class CreateInternshipPostsTable extends Migration
             $table->string('bond');
             $table->boolean('is_posted');
             $table->boolean('is_completed');
+            $table->boolean('is_active_registration');
             $table->unsignedInteger('company_id');
             $table->foreign('company_id')->references('id')->on('companies');
             $table->unsignedInteger('placement_drive_id');
             $table->foreign('placement_drive_id')->references('id')->on('placement_drives');
             $table->timestamps(); 
-            
+           
         });
+       
     }
 
     /**
