@@ -46,7 +46,7 @@
                             <label for="co_details" class="col-md-4 col-form-label text-md-right">{{ __('Coordinator Details') }}</label>
 
                             <div class="col-md-6">
-                                <textarea rows="5" cols="5" id="drive_name" type="text" class="form-control{{ $errors->has('co_details') ? ' is-invalid' : '' }}" placeholder="Person's Name,Phone,Email,Designation" name="co_details" value="{{ old('co_details') }}" required></textarea>
+                                <textarea rows="5" cols="5" id="drive_name" type="text" class="form-control{{ $errors->has('co_details') ? ' is-invalid' : '' }}" placeholder="Person's Name,Phone,Email,Designation" name="co_details" maxlength="300" value="{{ old('co_details') }}" required></textarea>
 
                                 @if ($errors->has('co_details'))
                                     <span class="invalid-feedback" role="alert">
@@ -73,7 +73,7 @@
                             Overview') }}</label>
 
                             <div class="col-md-6">
-                                <textarea rows="7" cols="7" id="drive_name" type="text" class="form-control{{ $errors->has('overview') ? ' is-invalid' : '' }}" placeholder="Overview" name="overview" value="{{ old('overview') }}" required></textarea>
+                                <textarea rows="7" cols="7" id="drive_name" type="text" class="form-control{{ $errors->has('overview') ? ' is-invalid' : '' }}" placeholder="Overview" name="overview" value="{{ old('overview') }}" maxlength="300" required></textarea>
 
                                 @if ($errors->has('overview'))
                                     <span class="invalid-feedback" role="alert">
@@ -101,7 +101,7 @@
                             <label for="recruitment" class="col-md-4 col-form-label text-md-right">{{ __('Recruitment Process') }}</label>
 
                             <div class="col-md-6">
-                                <textarea rows="5" cols="5" id="recruitment" type="text" class="form-control{{ $errors->has('recruitment') ? ' is-invalid' : '' }}" name="recruitment" value="{{ old('recruitment') }}" required></textarea>
+                                <textarea rows="5" cols="5" id="recruitment" type="text" class="form-control{{ $errors->has('recruitment') ? ' is-invalid' : '' }}" name="recruitment" value="{{ old('recruitment') }}" maxlength="300" required></textarea>
 
                                 @if ($errors->has('recruitment'))
                                     <span class="invalid-feedback" role="alert">
