@@ -70,4 +70,12 @@ class Student extends Authenticatable implements MustVerifyEmail
         return $this->hasOne('App\Placement_drive');
     }
 
+    public function placement_drive()
+    {
+        return $this->belongsTo('App\Placement_drive');
+    }
+    public function optout()
+    {
+        return $this->hasOne('App\Student_OptOut');
+    }
 }

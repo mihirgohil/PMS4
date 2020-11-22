@@ -56,6 +56,7 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index() {
+        
         return view('placement-coordinator.home');
     }
 
@@ -185,7 +186,7 @@ class HomeController extends Controller
         );
         // dd($request->get('internship_id'));
         Internship_Post::where('id',$request->get('internship_id'))->update($data);
-        return redirect()->back()->with('status', 'New Company Created successfully.',['id']);
+        return redirect()->back()->with('status', 'Internship Post Updated Successful.',['id']);
     }
 
     //placement dirve
@@ -219,6 +220,7 @@ class HomeController extends Controller
        $drive = Placement_drive::find($request->drid);
        $drive->is_completed = 1;
        $drive->save();
+       Internship_Post::where('placement_drive_id',$request->drid)->update(['is_completed'=>1]);
        return redirect()->back();
     }
 
@@ -312,7 +314,7 @@ class HomeController extends Controller
     }
 
     public function addStudentStore(Request $request)
-    {
+    {   $date = date('Y/m/d H:i:s');
         $password =  $this->getPassword(6);
         $request->validate([
             'enrollment_no' => 'required|min:12|numeric|unique:students',
@@ -326,7 +328,8 @@ class HomeController extends Controller
             'ug' => 'required|numeric',
             'stream' => 'required|max:255',
             'cpi' => 'required|numeric',
-            'drive' => 'required',   
+            'drive' => 'required',
+
         ]);
         if(request()->has('avatar')){
             $avataruploaded = request()->file('avatar');
@@ -347,6 +350,7 @@ class HomeController extends Controller
                 'stream' => $request->get('stream'),
                 'cpi' => $request->get('cpi'),
                 'placement_drive_id'=> $request->get('drive'),
+                
             ]);
         }
         $request->request->add(['password' => $password ]);

@@ -4,6 +4,7 @@ Route::group(['namespace' => 'Student'], function() {
     
     //studnet dashboard
     Route::get('/', 'HomeController@index')->name('student.dashboard');
+    Route::get('/optout/home', 'MailVerificationController@optoutIndex')->name('student.optOutIndex');
 
     //student mail verification page
     Route::get('mail-verify', 'MailVerificationController@mailverify')->name('student.mailverify');

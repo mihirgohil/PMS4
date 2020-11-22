@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>PMS | Company</title>
+  <title>PMS | Student</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -38,7 +38,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{ route('company.dashboard') }}" class="nav-link">Home</a>
+        {{-- <a href="{{ route('student.dashboard') }}" class="nav-link">Home</a> --}}
       </li>
     </ul>
 
@@ -47,11 +47,11 @@
     <ul class="navbar-nav ml-auto">
       <!-- Messages Dropdown Menu -->
       <li class="nav-item">
-      <a class="btn btn-danger" href="{{ route('company.logout') }}" onclick="event.preventDefault(); 
+      <a class="btn btn-danger" href="{{ route('student.logout') }}" onclick="event.preventDefault(); 
         document.getElementById('logout-form').submit();">
         {{ __('Logout') }}
       </a>
-      <form id="logout-form" action="{{ route('company.logout') }}" method="POST" style="display: none;">
+      <form id="logout-form" action="{{ route('student.logout') }}" method="POST" style="display: none;">
          @csrf
       </form>
       </li>
@@ -63,86 +63,27 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
-      <img src="{{ asset('images/company_icon.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+      <img src="{{ asset('images/student_icon.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
-      <span class="brand-text font-weight-light">Company</span>
+      <span class="brand-text font-weight-light">Student</span>
     </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-      <div class="image">
-          <img src="{{ asset(Auth::guard('company')->user()->avatar) }} " class="img-circle elevation-2" style="width:50px; height:50px;position:relative; border-radius:50%" alt="">
+        <div class="image">
+          <img src="{{ asset(Auth::guard('student')->user()->avatar) }} " class="img-circle elevation-2" style="width:45px; height:45px;position:relative; border-radius:50%" alt="">
         </div>
         <div class="info">
-            <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-              {{ Auth::guard('company')->user()->name }} <span class="caret"></span>
-            </a>
+          <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+            {{ Auth::guard('student')->user()->studentname }} <span class="caret"></span>
+          </a>
         </div>
       </div>
 
       <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-               <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-          <li class="nav-item">
-            <a href="{{ route('company.dashboard') }}" class="nav-link">
-            <i class="nav-icon fas fa-home"></i>
-              <p>
-                Home
-              </p>
-            </a>
-          </li>
-          
-          <li class="nav-item">
-            <a href="{{ route('company.profile') }}" class="nav-link">
-              <i class="nav-icon fas fa-user"></i>
-              <p>
-                Profile
-              </p>
-            </a>
-          </li>
       
-          <li class="nav-item">
-            <a href="{{ route('company.postInternship') }}" class="nav-link">
-              <i class="nav-icon fas fa-plus-circle"></i>
-              <p>
-                New Internship Post
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="{{ route('company.workingInternship') }}" class="nav-link">
-              <i class="nav-icon fas fa-clipboard"></i>
-              <p>
-                Working Internships
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="{{ route('company.history') }}" class="nav-link">
-              <i class="nav-icon fas fa-history"></i>
-              <p>
-                Closed Internships
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="{{ route('company.giveFeedback') }}" class="nav-link">
-              <i class="nav-icon fas fa-comments"></i>
-              <p>
-                Give Feedback
-              </p>
-            </a>
-          </li>
-        </ul>
-      </nav>
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->

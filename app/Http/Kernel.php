@@ -54,6 +54,7 @@ class Kernel extends HttpKernel
         'student.auth' => \App\Http\Middleware\RedirectIfNotStudent::class,
         'student.guest' => \App\Http\Middleware\RedirectIfStudent::class,
         'student.verified' => \App\Http\Middleware\StudentMailVerified::class,
+        'student.optout'=> \App\Http\Middleware\StudentOptOut::class,
         'placement-coordinator.auth' => \App\Http\Middleware\RedirectIfNotPlacementCoordinator::class,
         'placement-coordinator.guest' => \App\Http\Middleware\RedirectIfPlacementCoordinator::class,
         'company.auth' => \App\Http\Middleware\RedirectIfNotCompany::class,

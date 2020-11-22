@@ -136,13 +136,49 @@ class HomeController extends Controller
 
     //Company working internship
     public function workingInternship(){
-        $posts = Internship_Post::where('is_completed',0)->get();
+        $posts = Internship_Post::where('is_completed',0)->orderBy('id','DESC')->get();
         return view('company.workingInternship',['posts'=>$posts]);
+    }
+
+    // edit internship details
+
+    public function editInternshipPost(Request $request)
+    {
+        $id = $request->input('id');
+        $post = Internship_Post::find($id);
+        return view('company.editInternshipPosts',['post'=>$post]);
+    }
+
+    public function editInternshipPostSave(Request $request)
+    {   $data = array(
+        'co_details' => $request->get('co_details'),
+        'overview' => $request->get('overview'),
+        'duration' => $request->get('duration'),
+        'recruitment' => $request->get('recruitment'),
+        'position'=>$request->get('position'),
+        'modeofinterview'=> $request->get('modeofinterview'),
+        'workinghours'=> $request->get('workinghours'),
+        'ctc'=> $request->get('ctc'),
+        'bond'=> $request->get('bond'),
+        'stipend'=> $request->get('stipend'),
+        
+        );
+        // dd($request->get('internship_id'));
+        Internship_Post::where('id',$request->get('internship_id'))->update($data);
+        return redirect()->back()->with('status', 'Internship Post Updated Successful.',['id']);
+    }
+
+
+    public function DoCloseInternship(Request $request)
+    {   $id = $request->input('id');
+        Internship_Post::where('id',$id)->update(['is_completed'=>1]);
+        return redirect()->back()->with('status', 'Internship Post Closed.');
     }
 
     //Company history
     public function history(){
-        return view('company.history');
+        $posts = Internship_Post::where('is_completed',1)->orderBy('id','DESC')->get();
+        return view('company.history',['posts'=>$posts]);
     }
 
     //Company give feedback

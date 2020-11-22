@@ -14,4 +14,9 @@ class Internship_Post extends Model
     {
         return $this->belongsTo('App\Company');
     }
+
+    public function placement_drive()
+    {
+        return $this->belongsTo('App\Placement_drive');
+    }
 }

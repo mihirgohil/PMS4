@@ -1,13 +1,14 @@
 <?php
 
 namespace App\Http\Controllers\Student;
-use App\Student;
+
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Student\Auth\VerificationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Auth;
 
+use App\Student;
 use App\Student_feedback;
 use App\Student_OptOut;
 use App\Placement_drive;
@@ -25,7 +26,7 @@ class HomeController extends Controller
     {   
         $this->middleware('student.auth:student');        
         $this->middleware('student.verified:student');
-        
+        $this->middleware('student.optout:student');
     }
 
     /**
@@ -40,10 +41,12 @@ class HomeController extends Controller
         $drive = Placement_drive::find($student->placement_drive_id);
         // if($student->is_optout)
         // {  
-        //    return view('student.student_opt_out_home');
+        //    return view('student.homeOptOut');
         // }
         return view('student.home');
     }
+
+    
 
     //Student Profile
     public function stuprofile()
@@ -88,7 +91,7 @@ class HomeController extends Controller
     // dd($data);
       Student_OptOut::create($data);
       Student::where('id',$student_id)->update(['is_optout'=>1]);
-      return redirect()->back()->with('status', 'Your OptOut form submit!..');
+      return redirect()->route('student.optOutIndex')->with('status', 'Your OptOut form submit!..');
     }
 
     //Student give feedback
