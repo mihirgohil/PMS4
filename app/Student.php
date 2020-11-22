@@ -78,4 +78,8 @@ class Student extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasOne('App\Student_OptOut');
     }
+    public function internshipApplied()
+    {
+        return $this->hasMany('App\StudentAppliedForInternship');
+    }
 }

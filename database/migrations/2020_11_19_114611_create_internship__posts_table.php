@@ -24,7 +24,7 @@ class CreateInternshipPostsTable extends Migration
             $table->string('workinghours');
             $table->string('stipend');
             $table->string('ctc');
-            $table->string('bond');
+            $table->longText('bond');
             $table->boolean('is_posted');
             $table->boolean('is_completed');
             $table->boolean('is_active_registration');

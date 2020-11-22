@@ -143,10 +143,28 @@ class HomeController extends Controller
     
     public function managepublished(Request $request)
     {   $id = $request->input('id');
-        $posts = Internship_Post::where('placement_drive_id',$id)->where('is_posted',1)->where('is_completed',0)->get();
+        $posts = Internship_Post::where('placement_drive_id',$id)->where('is_posted',1)->where('is_completed',0)->orderBy('id','desc')->get();
         // dd($posts);  
         return view('placement-coordinator.managePublished',['posts'=>$posts,'id'=>$id]);
     }
+
+    public function doDisableRegistration(Request $request)
+    {
+        $id = $request->input('id');
+        $post = Internship_Post::find($id);
+        // dd($drive);
+        Internship_Post::where('id',$id)->update(['is_active_registration'=>0]);
+        return redirect()->back()->with('status', 'Student Registration Disabled for Company Internship Post : '.$post->company->name);
+    }
+
+    public function doEnableRegistration(Request $request)
+    {
+        $id = $request->input('id');
+        $post = Internship_Post::find($id);
+        Internship_Post::where('id',$id)->update(['is_active_registration'=>1]);
+        return redirect()->back()->with('status', 'Student Registration Enabled for Company Internship Post  : '.$post->company->name);
+    }
+    
 
     public function editInternshipPost(Request $request)
     {
@@ -158,6 +176,7 @@ class HomeController extends Controller
     public function publishInternshipPost(Request $request)
     {
         $id = $request->input('id');
+        // dd($id);
         Internship_Post::where('id',$id)->update(['is_posted' => 1]);
         return redirect()->back()->with('status', 'Internship Post Published to Students.');
     }

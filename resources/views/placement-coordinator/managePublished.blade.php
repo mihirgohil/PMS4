@@ -39,9 +39,9 @@
             {{ $data->company->name }}
             <div class="col-md-4 float-right">
               @if($data->is_active_registration)
-                <a href="#" class="btn btn-outline-danger">Disable Registration</a>
+                <a href="{{ route('placement-coordinator.disableReg', ['id' => $data->id ]) }}" class="btn btn-outline-danger">Disable Registration</a>
               @else 
-                <a href="#" class="btn btn-outline-warning">Active Registration</a>
+                <a href="{{ route('placement-coordinator.enableReg', ['id' => $data->id ]) }}" class="btn btn-warning">Active Registration</a>
               @endif
               <a href="#" class="btn btn-info">Show Applied Students List</a>
             </div>

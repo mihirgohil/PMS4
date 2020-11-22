@@ -136,7 +136,8 @@ class HomeController extends Controller
 
     //Company working internship
     public function workingInternship(){
-        $posts = Internship_Post::where('is_completed',0)->orderBy('id','DESC')->get();
+        $company_id = Auth::guard('company')->user()->getId();
+        $posts = Internship_Post::where('company_id',$company_id)->where('is_completed',0)->orderBy('id','DESC')->get();
         return view('company.workingInternship',['posts'=>$posts]);
     }
 
@@ -177,7 +178,8 @@ class HomeController extends Controller
 
     //Company history
     public function history(){
-        $posts = Internship_Post::where('is_completed',1)->orderBy('id','DESC')->get();
+        $company_id = Auth::guard('company')->user()->getId();
+        $posts = Internship_Post::where('company_id',$company_id)->where('is_completed',1)->orderBy('id','DESC')->get();
         return view('company.history',['posts'=>$posts]);
     }
 

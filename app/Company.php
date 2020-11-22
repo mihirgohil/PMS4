@@ -63,4 +63,9 @@ class Company extends Authenticatable
     {
         return $this->id;
     }
+
+    public function internship()
+    {
+        return $this->hasMany('App\Internship_Post');
+    }
 }

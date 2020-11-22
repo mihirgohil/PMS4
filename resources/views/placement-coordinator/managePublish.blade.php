@@ -39,8 +39,8 @@
           <img src="{{ $data->company->avatar }}" class="img-circle elevation-2" style="width:50px; height:50px;position:relative; border-radius:50%" alt="">
           {{ $data->company->name }}
           <div class="col-md-2 float-right">
-            <a href="{{ route('placement-coordinator.editInternship', ['id' => $id ]) }}" class="btn btn-primary">Edit</a>
-            <a href="{{ route('placement-coordinator.publishInternship', ['id' => $id ]) }}" class="btn btn-outline-success">Publish</a>
+            <a href="{{ route('placement-coordinator.editInternship', ['id' => $data->id ]) }}" class="btn btn-primary">Edit</a>
+            <a href="{{ route('placement-coordinator.publishInternship', ['id' => $data->id ]) }}" class="btn btn-outline-success">Publish</a>
           </div>
          
         </div>

@@ -12,6 +12,8 @@ use App\Student;
 use App\Student_feedback;
 use App\Student_OptOut;
 use App\Placement_drive;
+use App\Internship_Post;
+use App\StudentAppliedForInternship;
 class HomeController extends Controller
 {
 
@@ -38,12 +40,15 @@ class HomeController extends Controller
        
         $student_id = Auth::guard('student')->user()->getId();
         $student = Student::find($student_id);
-        $drive = Placement_drive::find($student->placement_drive_id);
-        // if($student->is_optout)
-        // {  
-        //    return view('student.homeOptOut');
-        // }
-        return view('student.home');
+        // $drive = Placement_drive::find($student->placement_drive->id);
+        $posts = Internship_Post::where('placement_drive_id',$student->placement_drive->id)->where('is_posted',1)->orderBy('id','desc')->get();
+        $student_applied = StudentAppliedForInternship::select('internship_id')->where('student_id',$student_id)->get();
+        $student_ap_array = array();
+        foreach ($student_applied as $value) {
+            array_push($student_ap_array, $value->internship_id);
+          }
+        
+        return view('student.home')->with(['student'=>$student,'posts'=>$posts,'applied_list'=>$student_ap_array]);
     }
 
     
@@ -59,16 +64,27 @@ class HomeController extends Controller
         return view('student.showprofile');
     }
 
-    //internship
-    public function interndetails()
-    {
-        return view('student.interndetails');
-    }
-
+    
     //Student apply for internship
     public function appliedInternship()
-    {
-        return view('student.appliedInternship');
+    {    $student_id = Auth::guard('student')->user()->getId();
+        $student = Student::find($student_id);
+        // $drive = Placement_drive::find($student->placement_drive->id);
+        $posts = Internship_Post::where('placement_drive_id',$student->placement_drive->id)->where('is_posted',1)->orderBy('id','desc')->get();
+        $student_applied = StudentAppliedForInternship::select('internship_id')->where('student_id',$student_id)->get();
+        $student_ap_array = array();
+        foreach ($student_applied as $value) {
+            array_push($student_ap_array, $value->internship_id);
+          }
+        
+        return view('student.appliedInternship')->with(['student'=>$student,'posts'=>$posts,'applied_list'=>$student_ap_array]);
+    }
+
+    public function applyForInternship(Request $request)
+    {   $internship_id = $request->input('id');
+        $student_id = Auth::guard('student')->user()->getId();
+        StudentAppliedForInternship::create(['student_id'=>$student_id,'internship_id'=>$internship_id]);
+        return redirect()->back()->with('status', 'You have Applied For Internship.');
     }
 
     //Student Opt-Out
@@ -116,10 +132,11 @@ class HomeController extends Controller
       return redirect()->back()->with('status', 'Feedback submit!..');
     }
 
+    //internship
+    public function interndetails()
+    {
+        return view('student.interndetails');
+    }
 
-    // public function mailverify() {
-        
-    //     return view('student.checkMailVerification');
-    // }
     
 }

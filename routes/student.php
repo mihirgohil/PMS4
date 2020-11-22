@@ -47,6 +47,7 @@ Route::group(['namespace' => 'Student'], function() {
 
      //internship
      Route::get('/internship', 'HomeController@interndetails')->name('student.interndetails');
+     Route::get('/internshipApply', 'HomeController@applyForInternship')->name('student.internapply');
 
      //feedback
      Route::get('/feedback', 'HomeController@giveFeedback')->name('student.giveFeedback');
