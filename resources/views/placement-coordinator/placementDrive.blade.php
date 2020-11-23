@@ -44,9 +44,7 @@
                         @else
                            <td> {{__('Currently Active')}}</a> </td>
                         @endif
-                        @if($data->is_completed)
-                          <td> <a href="#" class="btn btn-primary">{{__('View Reports')}}</a> </td>
-                        @else
+                        @if(!$data->is_completed)
                            <td> <button class="btn btn-danger" onclick="myFunction({{$data->id}})">{{__('Close Drive')}}</button> </td>
                         @endif
                     </tr>

@@ -10,9 +10,9 @@ class StudentAppliedForInternship extends Model
         'student_id','internship_id','is_selected',
     ];
 
-    public function company()
+    public function internship()
     {
-        return $this->belongsTo('App\Company');
+        return $this->belongsTo('App\Internship_Post');
     }
     public function student()
     {

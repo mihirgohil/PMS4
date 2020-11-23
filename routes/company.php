@@ -44,7 +44,10 @@ Route::group(['namespace' => 'Company'], function() {
     Route::get('/editInternshipPost','HomeController@editInternshipPost')->name('company.editInternship');
     Route::post('/editInternshipPostSave','HomeController@editInternshipPostSave')->name('company.editInternshipSave');
 
-
+    Route::get('/studentApplied','HomeController@studentApplied')->name('company.studentApplied');
+    Route::get('/studentAppliedHistory','HomeController@studentAppliedHistroy')->name('company.studentAppliedHistory');
+    
+    Route::get('/studentSelected','HomeController@studentSelected')->name('company.studentSelected');
     //feedback
     Route::get('/givefeedback', 'HomeController@giveFeedback')->name('company.giveFeedback');
     Route::post('/feedback/save', 'HomeController@feedbackSave')->name('company.feedback.Save');

@@ -81,6 +81,8 @@ Route::group(['namespace' => 'PlacementCoordinator'], function() {
 
     Route::get('/InternshipEnableRegistration','HomeController@doEnableRegistration')->name('placement-coordinator.enableReg');
     Route::get('/InternshipDisableRegistration','HomeController@doDisableRegistration')->name('placement-coordinator.disableReg');
+
+    Route::get('/InternshipStudentApplied','HomeController@studentApplied')->name('placement-coordinator.showApplied');
     
 
 });

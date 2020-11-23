@@ -22,6 +22,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Drive Name</th>
                 <th scope="col">Created At</th>
+                <th scope="col">Status</th>
                 <th></th>
               </tr>
             </thead>
@@ -33,7 +34,17 @@
                   <td> <?php echo $i ?></td>
                   <td>{{$data->drive_name}}</td>
                   <td>{{$data->created_at}}</td>  
-                  <td> <a href="{{ route('placement-coordinator.managePublish', ['id' => $data->id ]) }}" class="btn btn-primary">{{__('Manage & Publish Internship Post ')}}</a> </td>
+                  @if($data->is_completed)
+                           <td> {{__('Closed')}}</a> </td>
+                        @else
+                           <td> {{__('Currently Active')}}</a> </td>
+                        @endif
+                 
+                  @if($data->is_completed)
+                  <td> <a href="{{ route('placement-coordinator.ViewClosedInternshipPost', ['id' => $data->id ]) }}" class="btn btn-primary">{{__('See Internship Post ')}}</a> </td>
+               @else
+               <td> <a href="{{ route('placement-coordinator.managePublish', ['id' => $data->id ]) }}" class="btn btn-primary">{{__('Manage & Publish Internship Post ')}}</a> </td>
+               @endif
               </tr>
               @endforeach
             </tbody>

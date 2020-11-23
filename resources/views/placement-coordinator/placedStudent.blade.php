@@ -36,6 +36,13 @@
                 <div class="card" style="width: 22rem;">
                   <img class="card-img-top" src="{{$data->avatar}}" alt="Card image cap">
                   <div class="card-body">
+                    <div class="alert alert-success" role="alert">
+                    <h5 class="card-title">@foreach($data->internshipApplied as $applied)
+                      @if($applied->is_selected)
+                          {{ __('Completed Selected : ') }} {{ $applied->internship->company->name }}
+                      @endif
+                   @endforeach</h5><br><br>
+                    </div>
                     <h5 class="card-title">Student name :<br>{{$data->studentname}}</h5><br><br>
                     <p class="card-text">Enrollment No : {{$data->enrollment_no}}</a></p>
                     <p class="card-text">Phone No.: {{$data->phone}}</p>

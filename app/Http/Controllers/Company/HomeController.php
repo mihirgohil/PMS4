@@ -12,9 +12,11 @@ use Notification;
 use Illuminate\Support\Facades\Mail;
 
 use App\Internship_Post;
+use App\Student;
 use App\Company_feedback;
 use App\Placement_drive;
 use App\Add_Company_Coordinator;
+use App\StudentAppliedForInternship;
 
 class HomeController extends Controller
 {
@@ -174,6 +176,33 @@ class HomeController extends Controller
     {   $id = $request->input('id');
         Internship_Post::where('id',$id)->update(['is_completed'=>1]);
         return redirect()->back()->with('status', 'Internship Post Closed.');
+    }
+
+    public function studentApplied(Request $request)
+    {   $id = $request->input('id');
+        
+        $posts = Internship_Post::find($id);
+        // dd($posts);
+        $studentApplied = StudentAppliedForInternship::where('internship_id',$id)->get();
+        return view('company.studentAppliedForInternship',['data'=>$posts,'studentApplied'=>$studentApplied]);
+    }
+    public function studentAppliedHistroy(Request $request)
+    {   $id = $request->input('id');
+        
+        $posts = Internship_Post::find($id);
+        // dd($posts);
+        $studentApplied = StudentAppliedForInternship::where('internship_id',$id)->get();
+        return view('company.studentAppliedForInternshipHistory',['data'=>$posts,'studentApplied'=>$studentApplied]);
+    }
+
+    
+    public function studentSelected(Request $request){
+        $student_id = $request->input('student_id');
+        $student_name = $request->input('student_name');
+        $Internship_id = $request->input('internship_id');
+        Student::where('id',$student_id)->update(['is_placed'=>1]);
+        StudentAppliedForInternship::where('internship_id',$Internship_id)->where('student_id',$student_id)->update(['is_selected'=>1]);
+      return redirect()->back()->with('status', 'Student Selected : '.$student_name);
     }
 
     //Company history

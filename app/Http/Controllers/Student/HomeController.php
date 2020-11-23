@@ -47,8 +47,8 @@ class HomeController extends Controller
         foreach ($student_applied as $value) {
             array_push($student_ap_array, $value->internship_id);
           }
-        
-        return view('student.home')->with(['student'=>$student,'posts'=>$posts,'applied_list'=>$student_ap_array]);
+        $student_selected_internship = StudentAppliedForInternship::where('student_id',$student_id)->where('is_selected',1)->first();
+        return view('student.home')->with(['student'=>$student,'posts'=>$posts,'applied_list'=>$student_ap_array,'student_selected'=>$student_selected_internship]);
     }
 
     

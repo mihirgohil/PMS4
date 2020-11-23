@@ -57,7 +57,7 @@
             </div>
             
             <div class="col-md-4 float-left">
-              <a href="#" class="btn btn-primary">Student Applied & Selected</a>
+              <a href="{{ route('company.studentAppliedHistory', ['id' => $data->id ]) }}" class="btn btn-primary">Student Applied & Selected</a>
             </div>  
             
             

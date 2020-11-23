@@ -63,7 +63,7 @@
             </div>
             @if($data->is_posted)
             <div class="col-md-2 float-left">
-              <a href="#" class="btn btn-primary">Student Applied</a>
+              <a href="{{ route('company.studentApplied', ['id' => $data->id ]) }}" class="btn btn-primary">Student Applied</a>
             </div>
             <div class="col-md-2 float-right">
             <a href="{{ route('company.DoCloseInternship', ['id' => $data->id ]) }}" class="btn btn-danger">Close Internship Post</a>

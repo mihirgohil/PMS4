@@ -21,7 +21,7 @@ use App\Student;
 use App\Student_feedback;
 use App\Company_feedback;
 use App\Internship_Post;
-
+use App\StudentAppliedForInternship;
 class HomeController extends Controller
 {
 
@@ -131,7 +131,7 @@ class HomeController extends Controller
     }
 
     public function managePublishSelectDrive()
-    {   $drives = Placement_drive::where('is_completed', 0)->get();
+    {   $drives = Placement_drive::all();
         return view('placement-coordinator.managePublishSelectDrive')->with(['drive'=>$drives]);
     }
     public function manageinternship(Request $request)
@@ -163,6 +163,15 @@ class HomeController extends Controller
         $post = Internship_Post::find($id);
         Internship_Post::where('id',$id)->update(['is_active_registration'=>1]);
         return redirect()->back()->with('status', 'Student Registration Enabled for Company Internship Post  : '.$post->company->name);
+    }
+
+    public function studentApplied(Request $request)
+    {   $id = $request->input('id');
+        $drive_id = $request->input('drive_id');
+        $posts = Internship_Post::find($id);
+        // dd($posts);
+        $studentApplied = StudentAppliedForInternship::where('internship_id',$id)->get();
+        return view('placement-coordinator.studentAppliedForInternship',['data'=>$posts,'studentApplied'=>$studentApplied,'drive_id'=>$drive_id]);
     }
     
 
@@ -407,7 +416,8 @@ class HomeController extends Controller
     {   $id = $request->input('id');
         $student = Student::where('placement_drive_id',$id)->where('is_placed',1)->orderBy('enrollment_no')->get();
         $drive = Placement_drive::find($id);
-        return view('placement-coordinator.placedStudent')->with(['student'=>$student,'drive'=>$drive,'drive_id'=>$id]);
+        $company = Company::all();
+        return view('placement-coordinator.placedStudent')->with(['student'=>$student,'drive'=>$drive,'drive_id'=>$id,'company'=>$company]);
     }
 
     public function optoutStudent(Request $request)

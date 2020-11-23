@@ -6,7 +6,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Manage & Publish Internship</h1>
+            <h1 class="m-0 text-dark">Closed Internship Posts</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <a href="{{ route('placement-coordinator.managePublished', ['id' => $id ]) }}" class="btn btn-success">Published posts</a>
@@ -41,7 +41,7 @@
           <img src="{{ $data->company->avatar }}" class="img-circle elevation-2" style="width:50px; height:50px;position:relative; border-radius:50%" alt="">
           {{ $data->company->name }}
           <div class="col-md-4 float-right">
-            <a href="#" class="btn btn-info">Show Applied & Selected Students List</a>
+            <a href="{{ route('placement-coordinator.showApplied', ['id' => $data->id,'drive_id'=>$id ]) }}" class="btn btn-info">Show Applied Students List</a>
           </div>
         </div>
         <div class="card-body">

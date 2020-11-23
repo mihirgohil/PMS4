@@ -6,7 +6,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Manage & Publish Internship</h1>
+            <h1 class="m-0 text-dark">Manage & Published Internship</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <a href="{{ route('placement-coordinator.managePublish', ['id' => $id ]) }}" class="btn btn-info">New And Unpublished posts</a>
@@ -43,7 +43,7 @@
               @else 
                 <a href="{{ route('placement-coordinator.enableReg', ['id' => $data->id ]) }}" class="btn btn-warning">Active Registration</a>
               @endif
-              <a href="#" class="btn btn-info">Show Applied Students List</a>
+              <a href="{{ route('placement-coordinator.showApplied', ['id' => $data->id,'drive_id'=>$id ]) }}" class="btn btn-info">Show Applied Students List</a>
             </div>
            
           </div>
