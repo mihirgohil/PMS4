@@ -28,6 +28,7 @@
                       <th scope="col">Drive Name</th>
                       <th scope="col">Created At</th>
                       <th scope="col">Status</th>
+                      <th></th>
                       <th scope="col">Action</th>
                     </tr>
                   </thead>
@@ -44,9 +45,13 @@
                         @else
                            <td> {{__('Currently Active')}}</a> </td>
                         @endif
+                        <td> <button class="btn btn-primary" >{{__('View Reports')}}</button> </td>
                         @if(!$data->is_completed)
                            <td> <button class="btn btn-danger" onclick="myFunction({{$data->id}})">{{__('Close Drive')}}</button> </td>
+                        @else
+                          <td></td>   
                         @endif
+                          
                     </tr>
                     @endforeach
                   </tbody>
