@@ -84,5 +84,22 @@ Route::group(['namespace' => 'PlacementCoordinator'], function() {
 
     Route::get('/InternshipStudentApplied','HomeController@studentApplied')->name('placement-coordinator.showApplied');
     
+    Route::get('/report/menu','HomeController@reportmenu')->name('placement-coordinator.report_menu');  
+    
+    Route::get('/report/student/registerd','HomeController@registerd_student_list')->name('placement-coordinator.report_student_list');
+    Route::get('/report/student/placed','HomeController@registerd_placed_student_list')->name('placement-coordinator.report_placed_student_list');
+    Route::get('/report/student/unplaced','HomeController@registerd_unplaced_student_list')->name('placement-coordinator.report_unplaced_student_list');
 
+    Route::get('/report/student/optout','HomeController@registerd_optout_student_list')->name('placement-coordinator.report_optout_student_list');
+
+    Route::get('/report/print/student/registered','HomeController@registerd_student_list_print')->name('placement-coordinator.print_student_all_report');
+    Route::get('/report/print/student/placed','HomeController@registerd_placed_student_list_print')->name('placement-coordinator.print_student_placed_report');
+
+    Route::get('/report/print/student/unplaced','HomeController@registerd_unplaced_student_list_print')->name('placement-coordinator.print_student_unplaced_report');
+    Route::get('/report/print/student/optout','HomeController@registerd_optout_student_list_print')->name('placement-coordinator.print_student_optout_report');
+
+
+    Route::get('/report/internship/all','HomeController@report_all_internship')->name('placement-coordinator.report_internship_list');
+    Route::get('/report/internship/published','HomeController@report_published_internship')->name('placement-coordinator.report_published_internship_list');
+    Route::get('/report/internship/unpublished','HomeController@report_unpublished_internship')->name('placement-coordinator.report_unpublished_internship_list');
 });

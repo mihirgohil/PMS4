@@ -23,7 +23,71 @@
                 {{ session('status') }}
             </div>
         @endif
-
+        @if($student->placement_drive->is_completed)
+        <div class="card">
+          <div class="card-header">
+              <div class="row align-items-center">
+                  <div class="col-md-1">
+                   <img src="images/college_logo.png" class="img-circle elevation-2" style="width:50px; height:50px;position:relative; border-radius:50%" alt="">
+                  </div>
+                      <div class="col-md-9">
+  
+           <h1> {{ $student->placement_drive->drive_name}} </h1>
+                  </div>
+               <div class="float-right">
+                   Placement Drive Status :
+                <div class="alert alert-success" role="alert">
+                   Drive Closed
+                </div>
+              </div>
+                  </div>
+          </div>
+          <div class="card-body">
+              <h5 class="card-title">
+              Thank you For Participated in Placement Drive {{ $student->placement_drive->drive_name }}.
+                  <hr>
+          </h5>
+  
+          <h5 class="card-title">
+              “Don’t pray to God to make your life an easy going without challenge; instead pray to God to keep you in his blessing so that you can overcome any challenge or any difficulties. Don’t run away from problems, face it. Good luck.”
+          <hr>
+          </h5>
+  
+              <h5 class="card-title">
+              Regards,<br>Placement Team-CPIMCA
+              </h5>
+          </div>
+        </div>
+        @if($student->is_placed)
+        <div class="card">
+          <div class="card-header">
+            
+            <img src="{{ $student_selected->internship->company->avatar }}" class="img-circle elevation-2" style="width:50px; height:50px;position:relative; border-radius:50%" alt="">
+            {{ $student_selected->internship->company->name }}
+                  
+            </div>
+          
+          <div class="card-header">
+            <div class="alert alert-success" role="alert">
+              {{ __('You have Been Selected For This Internship.') }}
+            </div> 
+          </div>
+          <div class="card-body">
+            <h5 class="card-title"><strong>Contact Person : </strong><br> {{ $student_selected->internship->co_details}}</h5>
+            <p class="card-text"><br><strong>Company Overview :</strong><br> {{ $student_selected->internship->overview }}</p>
+            <p class="card-text"><br><strong>Internship Duration :</strong><br> {{$student_selected->internship->duration }}</p>
+            <p class="card-text"><br><strong>Recruitment Process :</strong><br> {{ $student_selected->internship->recruitment }}</p>
+            <p class="card-text"><br><strong>No. of Position(Technologies wise) :</strong><br> {{ $student_selected->internship->position }}</p>
+            <p class="card-text"><br><strong>Mode Of Interview :</strong><br> {{ $student_selected->internship->modeofinterview }}</p>
+            <p class="card-text"><br><strong>Working Hours :</strong><br> {{ $student_selected->internship->workinghours }}</p>
+            <p class="card-text"><br><strong>Stipend :</strong><br> {{ $student_selected->internship->stipend }}</p>
+            <p class="card-text"><br><strong>CTC :</strong><br> {{ $student_selected->internship->ctc }}</p>
+            <p class="card-text"><br><strong>Bond Details :</strong><br> {{ $student_selected->internship->bond }}</p>
+          </div>
+        </div>
+        @endif
+        @else
+            
         @if(!$student->is_placed)
 
             @foreach($posts as $data)
@@ -116,6 +180,7 @@
                 <p class="card-text"><br><strong>Bond Details :</strong><br> {{ $student_selected->internship->bond }}</p>
               </div>
             </div>
+        @endif
         @endif
       </div>
     </section>

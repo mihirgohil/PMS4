@@ -27,7 +27,8 @@
     <nav class="navbar navbar-expand-md navbar-dark bg-primary navbar-laravel">
         <div class="container-fluid">
             <a class="navbar-brand" href="{{ url('/') }}">
-                {{ config('app.name', 'Laravel') }}
+                <img class="logo" src="{{ asset('images/college_logo.png')}}">
+              {{ __('PMS:: Student Portal ')}}
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                 <span class="navbar-toggler-icon"></span>

@@ -123,6 +123,7 @@
               </p>
             </a>
           </li>
+          @if( !Auth::guard('student')->user()->is_placed)
           <li class="nav-item">
             <a href="{{ route('student.optout') }}" class="nav-link">
               <i class="nav-icon fas fa-building"></i>
@@ -131,6 +132,7 @@
               </p>
             </a>
           </li>
+          @endif
           <li class="nav-item">
             <a href="{{ route('student.giveFeedback') }}" class="nav-link">
               <i class="nav-icon fas fa-comments"></i>

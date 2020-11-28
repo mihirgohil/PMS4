@@ -45,7 +45,7 @@
                         @else
                            <td> {{__('Currently Active')}}</a> </td>
                         @endif
-                        <td> <button class="btn btn-primary" >{{__('View Reports')}}</button> </td>
+                        <td> <a class="btn btn-primary" href="{{ route('placement-coordinator.report_menu',['drive_id' => $data->id ]) }}" >{{__('View Reports')}}</a> </td>
                         @if(!$data->is_completed)
                            <td> <button class="btn btn-danger" onclick="myFunction({{$data->id}})">{{__('Close Drive')}}</button> </td>
                         @else

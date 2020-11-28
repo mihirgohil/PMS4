@@ -22,6 +22,10 @@ use App\Student_feedback;
 use App\Company_feedback;
 use App\Internship_Post;
 use App\StudentAppliedForInternship;
+
+
+Use PDF;
+
 class HomeController extends Controller
 {
 
@@ -507,4 +511,139 @@ class HomeController extends Controller
     {   //dd($request->input('email'));
         Notification::route('mail', $request->input('email'))->notify(new CoordinatorRegistrationNotification($request->input('password')));
     } 
+
+    //report menu
+    public function reportmenu(Request $request)
+    {   $drive_id = $request->input('drive_id');
+        $student_count = Student::where('placement_drive_id',$drive_id)->count();
+        $student_unplaced  = Student::where('placement_drive_id',$drive_id)->where('is_placed',0)->where('is_optout',0)->count();
+        $student_placed  = Student::where('placement_drive_id',$drive_id)->where('is_placed',1)->count();
+        $student_optout = Student::where('placement_drive_id',$drive_id)->where('is_optout',1)->count();
+        $total_internship = Internship_Post::where('placement_drive_id',$drive_id)->count();
+        $total_published = Internship_post::where('placement_drive_id',$drive_id)->where('is_posted',1)->count();
+        $total_unpublished = Internship_post::where('placement_drive_id',$drive_id)->where('is_posted',0)->count();
+        $placement_drive = Placement_drive::find($drive_id);
+        return view('placement-coordinator.report_menu')->with(['student_count'=>$student_count,'student_unplaced'=>$student_unplaced,'student_placed'=>$student_placed,'student_optout'=>$student_optout,'total_internship'=>$total_internship,'total_published'=>$total_published,'total_unpublished'=>$total_unpublished,'placement_drive'=>$placement_drive]);
+    }
+
+    //report all student
+    public function registerd_student_list(Request $request)
+    {
+        $drive_id = $request->input('drive_id');
+        $placement_drive = Placement_drive::find($drive_id);
+        $students = Student::where('placement_drive_id',$drive_id)->orderBy('enrollment_no')->get();
+        return view('placement-coordinator.report_all_student')->with(['placement_drive'=>$placement_drive,'students'=>$students]);   
+    }
+
+    public function registerd_student_list_print(Request $request)
+    {
+       
+        $drive_id = $request->input('drive_id');
+        $placement_drive = Placement_drive::find($drive_id);
+        $students = Student::where('placement_drive_id',$drive_id)->orderBy('enrollment_no')->get();
+        $students_count = Student::where('placement_drive_id',$drive_id)->count();    
+        $pdf = PDF::loadView('placement-coordinator.print_all_student',['placement_drive'=>$placement_drive,'students'=>$students,'students_count'=>$students_count]);
+        $pdf->setOptions([
+            'footer-center' => '[page]'
+        ]);
+
+        $name = 'All_student_'.$placement_drive.'.pdf';
+        return $pdf->stream($name);
+    }
+
+    public function registerd_placed_student_list(Request $request)
+    {
+        $drive_id = $request->input('drive_id');
+        $placement_drive = Placement_drive::find($drive_id);
+        $students = Student::where('placement_drive_id',$drive_id)->where('is_placed',1)->orderBy('enrollment_no')->get();
+        return view('placement-coordinator.report_placed_student')->with(['placement_drive'=>$placement_drive,'students'=>$students]);   
+    }
+    public function registerd_placed_student_list_print(Request $request)
+    {
+        $drive_id = $request->input('drive_id');
+        $placement_drive = Placement_drive::find($drive_id);
+        $students = Student::where('placement_drive_id',$drive_id)->where('is_placed',1)->orderBy('enrollment_no')->get();
+        $student_placed  = Student::where('placement_drive_id',$drive_id)->where('is_placed',1)->count();
+        $students_count = Student::where('placement_drive_id',$drive_id)->count();    
+        $pdf = PDF::loadView('placement-coordinator.print_placed_student',['placement_drive'=>$placement_drive,'students'=>$students,'students_count'=>$students_count,'placed'=>$student_placed]);
+        $pdf->setOptions([
+            'footer-center' => '[page]'
+        ]);
+
+        $name_odf = 'placed_student_'.$placement_drive.'.pdf';
+        return $pdf->stream($name_odf);
+    }
+
+    public function registerd_unplaced_student_list(Request $request)
+    {
+        $drive_id = $request->input('drive_id');
+        $placement_drive = Placement_drive::find($drive_id);
+        $students = Student::where('placement_drive_id',$drive_id)->where('is_placed',0)->where('is_optout',0)->orderBy('enrollment_no')->get();
+        return view('placement-coordinator.report_unplaced_student')->with(['placement_drive'=>$placement_drive,'students'=>$students]);   
+    }
+
+    public function registerd_unplaced_student_list_print(Request $request)
+    {
+        $drive_id = $request->input('drive_id');
+        $placement_drive = Placement_drive::find($drive_id);
+        $students = Student::where('placement_drive_id',$drive_id)->where('is_placed',0)->where('is_optout',0)->orderBy('enrollment_no')->get();
+        $student_placed  = Student::where('placement_drive_id',$drive_id)->where('is_placed',0)->where('is_optout',0)->count();
+        $students_count = Student::where('placement_drive_id',$drive_id)->count();    
+        $pdf = PDF::loadView('placement-coordinator.print_unplaced_student',['placement_drive'=>$placement_drive,'students'=>$students,'students_count'=>$students_count,'unplaced'=>$student_placed]);
+        $pdf->setOptions([
+            'footer-center' => '[page]'
+        ]);
+
+        $name = 'unplaced_student_'.$placement_drive.'.pdf';
+        return $pdf->stream($name);
+    }
+
+    public function registerd_optout_student_list(Request $request)
+    {
+        $drive_id = $request->input('drive_id');
+        $placement_drive = Placement_drive::find($drive_id);
+        $students =  Student::where('placement_drive_id',$drive_id)->where('is_optout',1)->orderBy('enrollment_no')->get();
+        return view('placement-coordinator.report_optout_student')->with(['placement_drive'=>$placement_drive,'students'=>$students]);   
+    }
+
+    public function registerd_optout_student_list_print(Request $request)
+    {
+        $drive_id = $request->input('drive_id');
+        $placement_drive = Placement_drive::find($drive_id);
+        $students = Student::where('placement_drive_id',$drive_id)->where('is_optout',1)->orderBy('enrollment_no')->get();
+        $student_placed  = Student::where('placement_drive_id',$drive_id)->where('is_optout',1)->count();
+        $students_count = Student::where('placement_drive_id',$drive_id)->count();    
+        $pdf = PDF::loadView('placement-coordinator.print_optout_student',['placement_drive'=>$placement_drive,'students'=>$students,'students_count'=>$students_count,'unplaced'=>$student_placed]);
+        $pdf->setOptions([
+            'footer-center' => '[page]'
+        ]);
+
+        $name = 'optout_student_'.$placement_drive.'.pdf';
+        return $pdf->stream($name);
+        // return view('placement-coordinator.print_optout_student')->with(['placement_drive'=>$placement_drive,'students'=>$students,'students_count'=>$students_count,'unplaced'=>$student_placed]);
+    }
+
+    public function report_all_internship(Request $request)
+    {  $drive_id = $request->input('drive_id');
+        $posts = Internship_Post::where('placement_drive_id',$drive_id)->orderBy('id','desc')->get();
+        $placement_drive = Placement_drive::find($drive_id);
+        // dd($posts);  
+        return view('placement-coordinator.report_total_internship',['placement_drive'=>$placement_drive,'posts'=>$posts,'drive_id'=>$drive_id]);
+    }
+   
+    public function report_published_internship(Request $request)
+    {  $drive_id = $request->input('drive_id');
+        $posts = Internship_Post::where('placement_drive_id',$drive_id)->where('is_posted',1)->orderBy('id','desc')->get();
+        $placement_drive = Placement_drive::find($drive_id);
+        // dd($posts);  
+        return view('placement-coordinator.report_published_internship',['placement_drive'=>$placement_drive,'posts'=>$posts,'drive_id'=>$drive_id]);
+    }
+    public function report_unpublished_internship(Request $request)
+    {  $drive_id = $request->input('drive_id');
+        $posts = Internship_Post::where('placement_drive_id',$drive_id)->where('is_posted',0)->orderBy('id','desc')->get();
+        $placement_drive = Placement_drive::find($drive_id);
+        // dd($posts);  
+        return view('placement-coordinator.report_unpublished_internship',['placement_drive'=>$placement_drive,'posts'=>$posts,'drive_id'=>$drive_id]);
+    }
+
 }
