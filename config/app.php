@@ -163,7 +163,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
         Intervention\Image\ImageServiceProvider::class,
-
+        
         /*
          * Package Service Providers...
          */
@@ -177,7 +177,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
        // niklasravnsborg\LaravelPdf\PdfServiceProvider::class,
-        // Barryvdh\Snappy\ServiceProvider::class,
+         Barryvdh\Snappy\ServiceProvider::class,
+        
+    
         
     ],
 

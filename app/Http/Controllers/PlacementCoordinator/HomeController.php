@@ -15,6 +15,7 @@ use App\Notifications\StudentRegistrationNotification;
 
 use Illuminate\Support\Facades\Mail;
 
+use PDF;
 use App\Placement_drive;
 use App\Company;
 use App\Student;
@@ -23,7 +24,6 @@ use App\Company_feedback;
 use App\Internship_Post;
 use App\StudentAppliedForInternship;
 
-use PDF;
 
 class HomeController extends Controller
 {
