@@ -23,8 +23,7 @@ use App\Company_feedback;
 use App\Internship_Post;
 use App\StudentAppliedForInternship;
 
-
-Use PDF;
+use PDF;
 
 class HomeController extends Controller
 {
