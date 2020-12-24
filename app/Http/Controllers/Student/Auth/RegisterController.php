@@ -59,7 +59,7 @@ class RegisterController extends Controller
             'dob' => 'required|date',
             'email' => 'required|email|max:255|unique:students',
             'password' => 'required|min:6|confirmed',
-            'avatar' => 'required|image|mimes:jpg,jpeg,png,svg,bmp|max:5000',
+            'avatar' => 'required|image|mimes:jpg,jpeg,png|max:5000',
             'phone' => 'required|min:10|numeric',
             'ssc' => 'required|numeric',
             'hsc' => 'required|numeric',
